@@ -29,6 +29,12 @@ Route::get('persons/suppliers', 'SuppliersController@index');
 Route::get('persons/suppliers/new', 'SuppliersController@newSupplier');
 Route::post('persons/suppliers/new', 'SuppliersController@saveSupplier');
 
+Route::get('products/', 'ProductsController@index');
+Route::get('products/categories', 'ProductsController@newCategory');
+Route::post('products/categories/new', 'ProductsController@saveCategory');
+Route::get('products/new', 'ProductsController@newProduct');
+
+
 
 Route::get('persons/users', 'UsersController@index');
 Route::get('persons/users/new', 'UsersController@newUser');

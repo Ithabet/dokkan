@@ -147,13 +147,13 @@
                                 <span class="selected"></span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ (Request::is('products*')) ? 'active' : '' }}">
                             <a href="#" class="nav-link nav-toggle"> <i class="material-icons">view_module</i>
                                 <span class="title">المنتجات</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link "> <span class="title">التصنيفات</span>
+                                <li class="nav-item {{ (Request::is('products/categories*')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('products/categories') }}" class="nav-link "> <span class="title">التصنيفات</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">

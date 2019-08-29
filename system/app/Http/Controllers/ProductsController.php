@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SuppliersController extends Controller
+class ProductsController extends Controller
 {
     //
     public function __construct()
@@ -13,9 +13,15 @@ class SuppliersController extends Controller
     }
 
     public function index(){
-        return view('persons.suppliers');
+        return view('products.products');
     }
-    public function newSupplier(){
-        return view('persons.newSupplier');
+    public function newCategory(){
+        return view('products.newCategory');
+    }
+    public function saveCategory(){
+
+    }
+    public function newProduct(){
+        return view('products.newProduct');
     }
 }
