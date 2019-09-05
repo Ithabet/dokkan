@@ -8,52 +8,60 @@
 @section('content')
 
     <div class="row">
+
         <div class="col-sm-6">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>التصنيفات</header>
+                    <header>منتج جديد</header>
                 </div>
-                <div class="card-body " id="bar-parent">
-                    <table class="table table-hover table-striped" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>اسم التصنيف</th>
-                            <th>عدد المنتجات</th>
-                            <th>اجمالي المبيعات</th>
-                            <th>خيارات</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><a href="{{ URL::to('poss/') }}">مواد غذائية</a></td>
-                            <td>115</td>
-                            <td>23052</td>
-                            <td>
-                                <a href="edit_professor.html" class="btn btn-primary btn-xs">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <button class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash-o "></i>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card card-box">
-                <div class="card-head">
-                    <header>تصنيف جديد</header>
-                </div>
-                <form action="{{ URL::to('products/categories/new') }}" method="post">
+                <form action="{{ URL::to('products/new') }}" method="post">
                     {{ csrf_field() }}
                 <div class="card-body row">
-                    <div class="col-lg-6 p-t-20">
+                    <div class="col-sm-12">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <label>التصنيف</label>
+                            <select class="form-control  select2">
+                                <option value="pm">مواد غذائية</option>
+                                <option value="psv">منظفات</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <input class="mdl-textfield__input" name="customerName" autofocus type="text" id="txtFirstName">
-                            <label class="mdl-textfield__label">اسم التصنيف</label>
+                            <label class="mdl-textfield__label">اسم المنتج</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <label class="mdl-textfield__label">كود المنتج</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <label class="mdl-textfield__label">سعر البيع</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <label class="mdl-textfield__label">سعر الشراء</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <label class="mdl-textfield__label">الكمية المتاحة</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <label class="mdl-textfield__label">كمية التنبيه</label>
                         </div>
                     </div>
                     <div class="col-lg-12 p-t-20 text-center">

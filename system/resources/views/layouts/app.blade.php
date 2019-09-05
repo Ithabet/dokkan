@@ -156,12 +156,8 @@
                                     <a href="{{ URL::to('products/categories') }}" class="nav-link "> <span class="title">التصنيفات</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link "> <span class="title">الوحدات</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link "> <span class="title">المنتجات</span>
+                                <li class="nav-item {{ (Request::is('products*')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('products') }}" class="nav-link "> <span class="title">المنتجات</span>
                                     </a>
                                 </li>
                             </ul>

@@ -5,10 +5,10 @@
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>نقاط البيع</header>
+                    <header>المنتجات</header>
                     <div class="btn-group pull-left">
-                        <a href="{{ URL::to('poss/new') }}" class="btn btn-info">
-                            <i class="fa fa-plus"></i>         نقطة جديدة
+                        <a href="{{ URL::to('products/new') }}" class="btn btn-info">
+                            <i class="fa fa-plus"></i>         منتج جديد
                         </a>
                     </div>
                 </div>
@@ -16,17 +16,25 @@
                     <table class="dataTable table table-hover table-striped" style="width:100%">
                         <thead>
                         <tr>
-                            <th>اسم النقطة</th>
-                            <th>عنوان النقطة</th>
-                            <th>اجمالي المبيعات</th>
+                            <th>اسم المنتج</th>
+                            <th>التصنيف</th>
+                            <th>كود المنتج</th>
+                            <th>سعر البيع</th>
+                            <th>سعر الشراء</th>
+                            <th>الكمية المتاحة</th>
                             <th>خيارات</th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><a href="{{ URL::to('poss/') }}">مدينتي 1</a></td>
-                                <td>مجموعه 11 منطقة الخدمات</td>
-                                <td>135620</td>
+
+                                <td><a href="{{ URL::to('product/') }}">منتج جديد 1 منتج جديد 1 منتج جديد 1</a></td>
+                                <td>مواد غذائية</td>
+                                <td>965895655441</td>
+                                <td>5.5</td>
+                                <td>4.5</td>
+                                <td>260</td>
+
                                 <td>
                                     <a href="edit_professor.html" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>

@@ -2,3 +2,8 @@
     font-family: 'Tajawal', sans-serif;
     font-weight: bolder;
 }
+
+input{
+
+    font-family: 'Tajawal', sans-serif !important;
+}

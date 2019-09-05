@@ -33,6 +33,7 @@ Route::get('products/', 'ProductsController@index');
 Route::get('products/categories', 'ProductsController@newCategory');
 Route::post('products/categories/new', 'ProductsController@saveCategory');
 Route::get('products/new', 'ProductsController@newProduct');
+Route::post('products/new', 'ProductsController@saveProduct');
 
 
 
