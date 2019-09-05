@@ -162,8 +162,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item start ">
-                            <a href="{{ URL::to('/') }}" class="nav-link nav-toggle">
+                        <li class="nav-item {{ (Request::is('purchases*')) ? 'active' : '' }} ">
+                            <a href="{{ URL::to('purchases/') }}" class="nav-link nav-toggle">
                                 <span class="title">المشتريات</span>
                                 <i class="material-icons">toc</i>
                                 <span class="selected"></span>

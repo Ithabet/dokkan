@@ -37,6 +37,10 @@ Route::post('products/new', 'ProductsController@saveProduct');
 
 
 
+Route::get('purchases/', 'purchasesController@index');
+Route::get('purchases/new', 'purchasesController@newPurchase');
+Route::post('purchases/new', 'purchasesController@savePurchase');
+
 Route::get('persons/users', 'UsersController@index');
 Route::get('persons/users/new', 'UsersController@newUser');
 Route::post('persons/users/new', 'UsersController@saveUser');
