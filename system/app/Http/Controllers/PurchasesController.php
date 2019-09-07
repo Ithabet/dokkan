@@ -15,13 +15,10 @@ class PurchasesController extends Controller
     public function index(){
         return view('purchases.purchases');
     }
-    public function newCategory(){
-        return view('products.newCategory');
+    public function newPurchase(){
+        return view('purchases.newPurchase');
     }
-    public function saveCategory(){
+    public function savePurchase(){
 
-    }
-    public function newProduct(){
-        return view('products.newProduct');
     }
 }

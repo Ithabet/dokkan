@@ -45,7 +45,7 @@
                             <label class="mdl-textfield__label">رقم الهاتف</label>
                         </div>
                     </div>
-                    <div class="col-lg-6 p-t-20">
+                    <div class="col-sm-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <label>الصلاحيات</label>
                             <select class="form-control  select2">
@@ -68,7 +68,7 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-6 p-t-20">
+                    <div class="col-sm-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <label>نقطة البيع</label>
                             <select class="form-control  select2">
