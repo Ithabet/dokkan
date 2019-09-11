@@ -30,6 +30,8 @@ Route::get('persons/suppliers/new', 'SuppliersController@newSupplier');
 Route::post('persons/suppliers/new', 'SuppliersController@saveSupplier');
 
 Route::get('products/', 'ProductsController@index');
+Route::post('products/JSON-search', 'ProductsController@jsonsearch');
+
 Route::get('products/categories', 'ProductsController@newCategory');
 Route::post('products/categories/new', 'ProductsController@saveCategory');
 Route::get('products/new', 'ProductsController@newProduct');

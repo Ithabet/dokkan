@@ -5,9 +5,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="description" content="Responsive Admin Template" />
-    <meta name="author" content="SmartUniversity" />
-    <title>Base</title>
+    <meta name="description" content="Dokkan point of sale web application" />
+    <meta name="author" content="Xative" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <title>Dokkan</title>
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
     <!-- icons -->
