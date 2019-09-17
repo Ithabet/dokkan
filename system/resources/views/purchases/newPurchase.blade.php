@@ -104,6 +104,28 @@
                         <div id="productsList" >
 
                         </div>
+
+                        <div id="totals" style="display: none" >
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-8 text-right">
+                                    الاجمالي
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <span id="grossTotal"></span>
+                                </div>
+                                <div class="col-sm-2">
+
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-lg btn-block btn-success">تنفيذ</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -141,7 +163,9 @@
                 var productIndex = productsList.findIndex(checkProduct);
                 productsList.splice(productIndex,1);
                 $('.row.product_'+product_id).remove();
+                reCalculate();
             });
+
             $( "#products" ).autocomplete({
                 source: function( request, response ) {
                     $.ajax( {
@@ -151,9 +175,7 @@
                             term: request.term
                         },
                         success: function( data ) {
-                            console.log(data);
                             response( data );
-
                         }
                     } );
                 },
@@ -168,14 +190,31 @@
                 return productId == newProductId;
             }
             function reCalculate(){
+                var products_count = $('.product').length;
+                if(products_count) $('#totals').show(); else $('#totals').hide();
+
                 $('.product').each(function (i) {
                     var product_id =$(this).data('id');
                     var quantity = parseInt($('.quantity[data-id="'+product_id+'"').val());
                     var price    = parseFloat($('.price[data-id="'+product_id+'"').val());
                     var total    = (quantity*price).toFixed(2);
                     $('.total_'+product_id).text(total);
-                })
+                    var grossTotal = 0;
+                    $('.total').each(function () {
+                        var subTotal = parseFloat($(this).html());
+                        grossTotal += parseFloat(subTotal);
+                        subTotal = 0;
+                    });
+                    grossTotal = grossTotal.toFixed(2);
+                $('#grossTotal').html(grossTotal);
+                });
             }
+            $(document).on('focus','.price',function(){
+                $(this).select();
+            });
+            $(document).on('change','.quantity,.price',function () {
+                reCalculate();
+            });
             $('#addToListBtn').on('click',function () {
                 var newProductId = $('#selected_product_id').val();
                 var newProductName = $('#products').val();
@@ -203,6 +242,8 @@
                             '</div>' );
                     }
                 }
+                reCalculate();
+                $('#selected_product_quantity').val(1)
             });
         });
 

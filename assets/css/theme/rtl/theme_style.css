@@ -5835,7 +5835,8 @@ fieldset[disabled] .btn.purple:not(.btn-outline):hover {
 *************************************************************/
 
 label {
-    font-weight: 400
+    font-weight: 600;
+    font-size: 14px;
 }
 .label {
     text-shadow: none!important;
@@ -5844,7 +5845,7 @@ label {
     font-weight: 600;
     padding: 8px 15px;
     background: #1ebdcc;
-    line-height: 1;
+    line-height: 3;
     text-align: center;
 }
 .label.label-sm {

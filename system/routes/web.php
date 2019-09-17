@@ -43,6 +43,10 @@ Route::get('purchases/', 'purchasesController@index');
 Route::get('purchases/new', 'purchasesController@newPurchase');
 Route::post('purchases/new', 'purchasesController@savePurchase');
 
+Route::get('sales/', 'salesController@index');
+Route::get('sales/new', 'salesController@newSales');
+Route::post('sales/new', 'salesController@saveSales');
+
 Route::get('persons/users', 'UsersController@index');
 Route::get('persons/users/new', 'UsersController@newUser');
 Route::post('persons/users/new', 'UsersController@saveUser');
