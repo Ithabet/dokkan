@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class expensesController extends Controller
 {
     //
     public function __construct()
@@ -13,24 +13,11 @@ class ProductsController extends Controller
     }
 
     public function index(){
-        return view('products.products');
-    }
-    public function newCategory(){
-        return view('products.newCategory');
+        return view('expenses.expenses');
     }
 
-    public function saveCategory(){
+    public function saveExpenses(){
 
     }
-    public function newProduct(){
-        return view('products.newProduct');
-    }
-    public function jsonsearch(Request $request)
-    {
-        $productsArr = array(
-        ['id'=>'1','value'=>'سكرزز','price'=>'20'],['id'=>'2','value'=>'ززيت','price'=>'37.5']
-        );
-        return response()->json($productsArr);
 
-    }
 }

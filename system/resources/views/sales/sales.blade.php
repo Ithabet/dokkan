@@ -7,7 +7,7 @@
                 <div class="card-head">
                     <header>المبيعات</header>
                     <div class="btn-group pull-left">
-                        <a href="{{ URL::to('sales/new') }}" class="btn btn-info">
+                        <a href="{{ URL::to('sales/pos') }}" class="btn btn-info">
                             <i class="fa fa-plus"></i>         جديد
                         </a>
                     </div>

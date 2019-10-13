@@ -90,7 +90,7 @@
                         </ul>
                     </li>
                     <li><a href="javascript:;" class="fullscreen-btn"><i class="fa fa-arrows-alt"></i></a></li>
-                    <li><a href="{{ URL::to('') }}" class="pos-btn"><i class="fa fa-laptop"></i></a></li>
+                    <li><a href="{{ URL::to('sales/pos') }}" class="pos-btn"><i class="fa fa-laptop"></i></a></li>
 
                 </ul>
             </div>
@@ -104,7 +104,7 @@
         <div class="sidebar-container">
             <div class="sidemenu-container navbar-collapse collapse fixed-menu">
                 <div id="remove-scroll" class="left-sidemenu">
-                    <ul class="sidemenu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true"
+                    <ul class="sidemenu page-header-fixed" data-keep-expanded="false" data-auto-scroll="true"
                         data-slide-speed="200" style="padding-top: 20px">
                         <li class="sidebar-toggler-wrapper hide">
                             <div class="sidebar-toggler">
@@ -157,7 +157,7 @@
                                     <a href="{{ URL::to('products/categories') }}" class="nav-link "> <span class="title">التصنيفات</span>
                                     </a>
                                 </li>
-                                <li class="nav-item {{ (Request::is('products*')) ? 'active' : '' }}">
+                                <li class="nav-item {{ (Request::is('products')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('products') }}" class="nav-link "> <span class="title">المنتجات</span>
                                     </a>
                                 </li>
@@ -179,8 +179,8 @@
                                 <span class="arrow "></span>
                             </a>
                         </li>
-                        <li class="nav-item start ">
-                            <a href="{{ URL::to('/') }}" class="nav-link nav-toggle">
+                        <li class="nav-item {{ (Request::is('expenses*')) ? 'active' : '' }} ">
+                            <a href="{{ URL::to('expenses/') }}" class="nav-link nav-toggle">
                                 <span class="title">المصروفات</span>
                                 <i class="material-icons">toc</i>
                                 <span class="selected"></span>

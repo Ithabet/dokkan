@@ -15,7 +15,7 @@ class salesController extends Controller
     public function index(){
         return view('sales.sales');
     }
-    public function newSales(){
+    public function pos(){
         return view('sales.POS');
     }
     public function savePurchase(){
