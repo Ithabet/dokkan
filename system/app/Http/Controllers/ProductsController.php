@@ -18,10 +18,19 @@ class ProductsController extends Controller
     public function newCategory(){
         return view('products.newCategory');
     }
+
     public function saveCategory(){
 
     }
     public function newProduct(){
         return view('products.newProduct');
+    }
+    public function jsonsearch(Request $request)
+    {
+        $productsArr = array(
+        ['id'=>'1','value'=>'سكرزز','price'=>'20'],['id'=>'2','value'=>'ززيت','price'=>'37.5']
+        );
+        return response()->json($productsArr);
+
     }
 }

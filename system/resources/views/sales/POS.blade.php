@@ -12,9 +12,9 @@
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>عملية شراء جديدة</header>
+                    <header>عملية بيع جديدة</header>
                     <div class="btn-group pull-left">
-                        <a href="{{ URL::to('purchases') }}" class="btn btn-danger">
+                        <a href="{{ URL::to('sales') }}" class="btn btn-danger">
                             <i class="fa fa-pan"></i>         الغاء
                         </a>
                     </div>
@@ -24,10 +24,10 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <div class="col-sm-3"><label>اسم المورد</label></div>
+                                    <div class="col-sm-3"><label>اسم العميل</label></div>
                                     <div class="col-sm-9">
                                             <select class="form-control  select2">
-                                                <option value="">-- إختر مورد --</option>
+                                                <option value="">-- عميل عشوائي --</option>
                                                 <option value="pm">جمال عبد الحميد</option>
                                                 <option value="psv">النصر للتوزيع</option>
                                             </select>
