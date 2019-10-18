@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bc3fa3b8-556b-456b-8a95-63c2a8b0d7c0" name="Default Changelist" comment="pushhing project for the first time">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/app/Http/Controllers/expensesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/app/Http/Controllers/expensesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/app/Http/Controllers/salesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/app/Http/Controllers/salesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/app/Http/Controllers/CustomersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/app/Http/Controllers/CustomersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/resources/views/expenses/expenses.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/expenses/expenses.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/resources/views/persons/customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/persons/customer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/resources/views/sales/POS.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/sales/POS.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/resources/views/sales/sales.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/sales/sales.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,27 +100,22 @@
       <path value="$PROJECT_DIR$/system/vendor/psy/psysh" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
-  </component>
+  <component name="ProjectId" id="1SOOjP3rKYmzlvsJtuVcHALMjU2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="theme&#9;FILE&#9;file://D:/xampp/htdocs/dokkan/assets/css/theme/rtl/theme_style.css" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/system/resources/views/persons" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\dokkan\system\resources\views\persons" />
       <recent name="D:\xampp\htdocs\dokkan\system\app\Http\Controllers" />
       <recent name="D:\xampp\htdocs\dokkan\system\resources\views\expenses" />
       <recent name="D:\xampp\htdocs\dokkan\system\resources\views\sales" />
       <recent name="D:\xampp\htdocs\dokkan\system\resources\views\purchases" />
-      <recent name="D:\xampp\htdocs\dokkan\system\resources\views\products" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -155,6 +150,7 @@
       <workItem from="1568885920495" duration="3870000" />
       <workItem from="1569409528017" duration="599000" />
       <workItem from="1570521113439" duration="867000" />
+      <workItem from="1571431329211" duration="2692000" />
     </task>
     <servers />
   </component>

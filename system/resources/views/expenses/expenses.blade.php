@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="card-box">
                 <div class="card-head">
                     <header>إضافة مصروفات</header>
@@ -53,7 +53,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-7 col-sm-7">
             <div class="card card-box">
                 <div class="card-head">
                     <header>المصروفات</header>
@@ -100,6 +100,13 @@
 @stop
 
 @section('EXTJS')
+    <!-- Data Table -->
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/export/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/export/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/export/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/table/table_data.js') }}"></script>
 
     <script src="{{ asset('assets/plugins/select2/js/select2.js') }}"></script>
     <script src="{{ asset('assets/js/pages/select2/select2-init.js') }}"></script>

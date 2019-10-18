@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('persons/customers', 'CustomersController@index');
+Route::get('persons/customer/{customer}', 'CustomersController@customer');
 Route::get('persons/customers/new', 'CustomersController@newCustomer');
 Route::post('persons/customers/new', 'CustomersController@saveCustomer');
 

@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('EXTCSS')
+
     <link href="{{ URL::to('assets/plugins/select2/css/select2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::to('assets/plugins/jquery-ui/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::to('assets/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::to('assets/plugins/material-datetimepicker/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
 
@@ -48,7 +50,7 @@
                             <div class="col s12">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        المنتج
+                                        المنتج / باركود
                                         <input type="text" dir="rtl" class="form-control" id="products">
                                         <input type="hidden" id="selected_product_id" value="">
                                         <input type="hidden" id="selected_product_price" value="">
@@ -175,6 +177,7 @@
                             term: request.term
                         },
                         success: function( data ) {
+                            console.log('ssss');
                             response( data );
                         }
                     } );

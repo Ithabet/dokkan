@@ -18,4 +18,7 @@ class CustomersController extends Controller
     public function newCustomer(){
         return view('persons.newCustomer');
     }
+    public function customer(Request $customer){
+        return view('persons.customer');
+    }
 }

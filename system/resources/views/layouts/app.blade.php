@@ -124,7 +124,7 @@
                                 <span class="arrow {{ (Request::is('persons/*')) ? 'open' : '' }}"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item {{ (Request::is('persons/customers*')) ? 'active' : '' }}">
+                                <li class="nav-item {{ (Request::is('persons/customer*')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('persons/customers') }}" class="nav-link ">
                                         <span class="title">العملاء</span>
                                     </a>
