@@ -18,19 +18,19 @@
                 <div class="card-body row">
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="name" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">اسم العميل</label>
                         </div>
                     </div>
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerPhone" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="phone" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">رقم الهاتف</label>
                         </div>
                     </div>
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerCredit" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="credit" value="0" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">الرصيد</label>
                         </div>
                     </div>

@@ -25,12 +25,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($customers as $customer)
                             <tr>
-                                <td><a href="{{ URL::to('persons/customer/') }}">محمد عبدالله الهادي</a></td>
-                                <td>01055225522</td>
+                                <td><a href="{{ URL::to('persons/customer/'.$customer->id) }}">{{ $customer->name }}</a></td>
+                                <td>{{ $customer->phone }}</td>
                                 <td>3</td>
                                 <td>1500</td>
-                                <td>0</td>
+                                <td>{{ $customer->transactions()->latest('created_at')->first()->balance }}</td>
                                 <td>
                                     <a href="edit_professor.html" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
@@ -40,6 +41,7 @@
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

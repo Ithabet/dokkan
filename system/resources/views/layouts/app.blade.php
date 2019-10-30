@@ -195,6 +195,22 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
+                @if($errors->any())
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li><strong>{{ $error }}</strong></li>
+                                @endforeach
+                                </ul>
+                                <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 @yield('content')
             </div>
         </div>
