@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Customer;
 class salesController extends Controller
 {
     //
@@ -16,7 +16,8 @@ class salesController extends Controller
         return view('sales.sales');
     }
     public function pos(){
-        return view('sales.POS');
+        $customers = Customer::all();
+        return view('sales.POS',compact('customers'));
     }
     public function savePurchase(){
 

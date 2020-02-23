@@ -25,12 +25,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($suppliers as $supplier)
                             <tr>
-                                <td><a href="{{ URL::to('persons/supplier/') }}">محمد عبدالله الهادي</a></td>
-                                <td>01055225522</td>
+                                <td><a href="{{ URL::to('persons/supplier/'.$supplier->id) }}">{{ $supplier->name }}</a></td>
+                                <td>{{ $supplier->phone }}</td>
                                 <td>3</td>
                                 <td>1500</td>
-                                <td>0</td>
+                                <td>{{$supplier->transactions()->sum('balance')}}</td>
                                 <td>
                                     <a href="edit_professor.html" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
@@ -40,6 +41,7 @@
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

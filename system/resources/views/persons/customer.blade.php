@@ -5,7 +5,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>محمد عبدالله الهادي</header>
+                    <header>{{ $customer->name}}</header>
                 </div>
                 <div class="card-body " id="bar-parent">
                     <div class="state-overview">
@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="value white">
                                         <p class="sbold addr-font-h1" data-counter="counterup" data-value="0">0</p>
-                                        <p>متبقي عليه</p>
+                                        <p>make a function to calculate the due balance</p>
                                     </div>
                                 </div>
                             </div>

@@ -26,24 +26,25 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($products as $product)
                             <tr>
-
-                                <td><a href="{{ URL::to('product/') }}">منتج جديد 1 منتج جديد 1 منتج جديد 1</a></td>
-                                <td>مواد غذائية</td>
-                                <td>965895655441</td>
-                                <td>5.5</td>
-                                <td>4.5</td>
-                                <td>260</td>
+                                <td><a href="{{ URL::to('product/'.$product->id) }}">{{ $product->name }}</a></td>
+                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->code }}</td>
+                                <td>{{ $product->sell_price }}</td>
+                                <td>{{ $product->purchase_price }}</td>
+                                <td>{{ $product->quantity }}</td>
 
                                 <td>
-                                    <a href="edit_professor.html" class="btn btn-primary btn-xs">
+                                    <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger btn-xs">
+                                    <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

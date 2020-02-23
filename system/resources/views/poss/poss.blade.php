@@ -23,19 +23,21 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($poss as $pos)
                             <tr>
-                                <td><a href="{{ URL::to('poss/') }}">مدينتي 1</a></td>
-                                <td>مجموعه 11 منطقة الخدمات</td>
-                                <td>135620</td>
+                                <td><a href="{{ URL::to('poss/'.$pos->id) }}">{{ $pos->name }}</a></td>
+                                <td>{{ $pos->address }}</td>
+                                <td>make function to collect sells</td>
                                 <td>
-                                    <a href="edit_professor.html" class="btn btn-primary btn-xs">
+                                    <a href="{{ URL::to('poss/edit/'.$pos->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger btn-xs">
+                                    <a href="{{ URL::to('poss/delete/'.$pos->id) }}" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

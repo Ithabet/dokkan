@@ -17,50 +17,60 @@
                 <form action="{{ URL::to('products/new') }}" method="post">
                     {{ csrf_field() }}
                 <div class="card-body row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <label>التصنيف</label>
-                            <select class="form-control  select2">
-                                <option value="pm">مواد غذائية</option>
-                                <option value="psv">منظفات</option>
+                            <select class="form-control  select2" name="category_id">
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
 
                         </div>
                     </div>
 
+                    <div class="col-sm-6">
+                    <label>نوع المنتج</label>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <select class="form-control  " name="type">
+                                <option value="m">خام</option>
+                                <option value="f">تام</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName" autofocus type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="name" autofocus type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">اسم المنتج</label>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="code"  type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">كود المنتج</label>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="sell_price"  type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">سعر البيع</label>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="purchase_price"  type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">سعر الشراء</label>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="quantity"  type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">الكمية المتاحة</label>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName"  type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="alert_quantity"  type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">كمية التنبيه</label>
                         </div>
                     </div>

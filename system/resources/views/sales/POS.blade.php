@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-8 col-sm-8">
             <div class="card card-box">
                 <div class="card-head">
                     <header>عملية بيع جديدة</header>
@@ -24,25 +24,34 @@
                 <form action="" method="post">
                     <div class="card-body " id="bar-parent">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-5">
                                 <div class="row">
-                                    <div class="col-sm-3"><label>اسم العميل</label></div>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-5"><label>اسم العميل</label></div>
+                                    <div class="col-sm-7">
                                             <select class="form-control  select2">
-                                                <option value="">-- عميل عشوائي --</option>
-                                                <option value="pm">جمال عبد الحميد</option>
-                                                <option value="psv">النصر للتوزيع</option>
+                                                <option value="0">-- عميل عشوائي --</option>
+                                                @foreach($customers as $customer)
+                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                @endforeach
                                             </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="row">
-                                    <div class="col-sm-3"><label>تاريخ العملية</label></div>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-6"><label>تاريخ العملية</label></div>
+                                    <div class="col-sm-6">
                                         <input class="mdl-textfield__input" type="text" value="{{ date('Y-m-d') }}" id="date" data-dtp="dtp_JFOV1">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control  select2">
+                                    <option value="">-- رقم الطاولة --</option>
+                                    <option value="1">طاولة 1</option>
+                                    <option value="2">طاولة 2</option>
+                                    <option value="0">تيك اواي 2</option>
+                                </select>
                             </div>
                         </div>
                         <hr />
@@ -177,7 +186,7 @@
                             term: request.term
                         },
                         success: function( data ) {
-                            console.log('ssss');
+                            console.log(data);
                             response( data );
                         }
                     } );

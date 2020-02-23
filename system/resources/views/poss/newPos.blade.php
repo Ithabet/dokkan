@@ -23,13 +23,13 @@
                 <div class="card-body row">
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="name" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">اسم نقطة البيع</label>
                         </div>
                     </div>
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="address" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">عنوان نقطة البيع</label>
                         </div>
                     </div>

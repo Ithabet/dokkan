@@ -21,8 +21,9 @@ class CustomersController extends Controller
     public function newCustomer(){
         return view('persons.newCustomer');
     }
-    public function customer(Request $customer){
-        return view('persons.customer');
+    public function customer(Customer $customer){
+        
+        return view('persons.customer',compact('customer'));
     }
     public function saveCustomer(Request $request){
         $rules = [

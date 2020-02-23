@@ -167,15 +167,17 @@
             });
 
             $( "#products" ).autocomplete({
+                autoFocus: true,
                 source: function( request, response ) {
                     $.ajax( {
                         url: "{{ URL::to('products/JSON-search') }}",
                         type: "post",
                         data: {
-                            term: request.term
+                            keywords: request.term
                         },
                         success: function( data ) {
                             response( data );
+                            console.log(data);
                         }
                     } );
                 },

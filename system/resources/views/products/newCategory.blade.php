@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <div class="card card-box">
                 <div class="card-head">
                     <header>التصنيفات</header>
@@ -24,25 +24,27 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($categories as $category)
                         <tr>
-                            <td><a href="{{ URL::to('poss/') }}">مواد غذائية</a></td>
-                            <td>115</td>
-                            <td>23052</td>
+                            <td><a href="{{ URL::to('products/category/'.$category->id) }}">{{ $category->name }}</a></td>
+                            <td>function collect number of products</td>
+                            <td>function collect sum of sells</td>
                             <td>
-                                <a href="edit_professor.html" class="btn btn-primary btn-xs">
+                                <a href="{{ URL::to('products/category/edit/'.$category->id) }}" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger btn-xs">
+                                <a href="{{ URL::to('products/category/delete/'.$category->id) }}" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash-o "></i>
-                                </button>
+                                </a>
                             </td>
                         </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="card card-box">
                 <div class="card-head">
                     <header>تصنيف جديد</header>
@@ -50,9 +52,9 @@
                 <form action="{{ URL::to('products/categories/new') }}" method="post">
                     {{ csrf_field() }}
                 <div class="card-body row">
-                    <div class="col-lg-6 p-t-20">
+                    <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="customerName" autofocus type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="name" autofocus type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">اسم التصنيف</label>
                         </div>
                     </div>
