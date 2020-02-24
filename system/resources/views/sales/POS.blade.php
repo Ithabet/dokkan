@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 col-sm-8">
+        <div class="col-md-7 col-sm-7">
             <div class="card card-box">
                 <div class="card-head">
                     <header>عملية بيع جديدة</header>
@@ -141,7 +141,25 @@
                 </form>
             </div>
         </div>
+        <div class="col-md-5 col-sm-5">
+            <div class="card card-box">
+                <div class="card-head">
+                    <header>الاصناف</header>
+                    <div class="btn-group pull-left">
+                    <input type="text" id="SearchByName" placeholder="بحث بإسم المنتج" dir="rtl" class="form-control" >
+                    </div>
+                </div>
+                <div class="card-body " id="bar-parent">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="ajax_products"></div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
+    
 @stop
 
 @section('EXTJS')
@@ -164,6 +182,8 @@
                 }
 
             });
+
+            
             var productsList = [];
 
             $(document).on('click','.remove',function () {
@@ -177,6 +197,29 @@
                 reCalculate();
             });
 
+            function load_products(keywords,number_per_page){
+                if(!keywords){
+                    keywords = ' ';
+                }
+                if(!number_per_page){
+                    number_per_page = 15;
+                }
+                $.ajax( {
+                        url: "{{ URL::to('products/getAjaxProducts') }}",
+                        type: "post",
+                        data: {
+                            keywords: keywords
+                        },
+                        success: function( data ) {
+                            console.log(data);   
+                        }
+                    } );
+            }    
+            load_products(' ',12);
+            $('#SearchByName').keyup(function() {
+                var keywords = $(this).val();
+                load_products(keywords,12);
+            });
             $( "#products" ).autocomplete({
                 source: function( request, response ) {
                     $.ajax( {

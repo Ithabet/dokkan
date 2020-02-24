@@ -71,4 +71,10 @@ class ProductsController extends Controller
         return response()->json($products);
 
     }
+    public function getAjaxProducts(Request $request){   
+            $products = Product::select(['id','code','purchase_price as price','name as value'])->where('code','like','%'.$request->keywords.'%')
+                            ->orWhere('name','like','%'.$request->keywords.'%')->get();
+            return response()->json($products);
+    }
+
 }

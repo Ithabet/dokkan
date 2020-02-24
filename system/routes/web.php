@@ -32,6 +32,7 @@ Route::post('persons/suppliers/new', 'SuppliersController@saveSupplier');
 
 Route::get('products/', 'ProductsController@index');
 Route::post('products/JSON-search', 'ProductsController@jsonsearch');
+Route::post('products/getAjaxProducts', 'ProductsController@getAjaxProducts');
 
 Route::get('products/categories', 'ProductsController@newCategory');
 Route::post('products/categories/new', 'ProductsController@saveCategory');
