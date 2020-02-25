@@ -144,17 +144,40 @@
         <div class="col-md-5 col-sm-5">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>الاصناف</header>
+                    <header>المنتجات</header>
                     <div class="btn-group pull-left">
                     <input type="text" id="SearchByName" placeholder="بحث بإسم المنتج" dir="rtl" class="form-control" >
                     </div>
                 </div>
                 <div class="card-body " id="bar-parent">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="ajax_products"></div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="mdl-radio mdl-js-radio" for="all">
+                                <input type="radio" id="all" name="category"
+                                    class="mdl-radio__button" value="0" checked>
+                                <span class="mdl-radio__label">الكل</span>
+                            </label>
+                            @foreach($categories as $category)
+                            <label class="mdl-radio mdl-js-radio" for="option{{ $category->id }}">
+                                <input type="radio" id="option{{ $category->id }}" name="category"
+                                    class="mdl-radio__button" value="{{ $category->id }}" >
+                                <span class="mdl-radio__label">{{ $category->name }}</span>
+                            </label>
+                            @endforeach
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="ajax_products">
+                            
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><a href=""><a></div>
+                        <div class="col-sm-6"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -208,17 +231,36 @@
                         url: "{{ URL::to('products/getAjaxProducts') }}",
                         type: "post",
                         data: {
-                            keywords: keywords
+                            keywords: keywords,
+                            number_per_page:number_per_page
                         },
                         success: function( data ) {
+                            var products = data.data;
+                            var next_page = data.next_page_url;
+                            var html = "";
+                            $.each(products,function(i,v){
+                                html += '<a href="#newProduct" data-id="'+v.id+'" data-value="'+v.value+'" data-price="'+v.price+'" '+
+                                'class="btn-product btn btn-info btn-circle m-b-10">'+v.value+'</a>';   
+                                console.log(v);
+                            });
+                               $("#ajax_products").html(html);
                             console.log(data);   
                         }
                     } );
             }    
-            load_products(' ',12);
+            load_products(' ',4);
+            $(document).on('click','.btn-product',function(){
+                console.log($(this).data());
+                var newProductId = $(this).data().id;
+                var newProductName = $(this).data('value');
+                var price = parseFloat($(this).data('price'));
+                var quantity = 1;
+                $('#selected_product_id').val(newProductId);
+                newProduct(newProductId,newProductName,price,quantity);
+            });
             $('#SearchByName').keyup(function() {
                 var keywords = $(this).val();
-                load_products(keywords,12);
+                load_products(keywords,4);
             });
             $( "#products" ).autocomplete({
                 source: function( request, response ) {
@@ -226,7 +268,7 @@
                         url: "{{ URL::to('products/JSON-search') }}",
                         type: "post",
                         data: {
-                            term: request.term
+                            keywords: request.term
                         },
                         success: function( data ) {
                             console.log(data);
@@ -270,11 +312,8 @@
             $(document).on('change','.quantity,.price',function () {
                 reCalculate();
             });
-            $('#addToListBtn').on('click',function () {
-                var newProductId = $('#selected_product_id').val();
-                var newProductName = $('#products').val();
-                var price = parseFloat($('#selected_product_price').val());
-                var quantity = parseInt($('#selected_product_quantity').val());
+            function newProduct(newProductId,newProductName,price,quantity){
+                
                 var product_total = quantity*price;
                 if(newProductId)
                 {
@@ -298,6 +337,13 @@
                     }
                 }
                 reCalculate();
+                }
+            $('#addToListBtn').on('click',function () {
+                var newProductId = $('#selected_product_id').val();
+                var newProductName = $('#products').val();
+                var price = parseFloat($('#selected_product_price').val());
+                var quantity = parseInt($('#selected_product_quantity').val());
+                newProduct(newProductId,newProductName,price,quantity);
                 $('#selected_product_quantity').val(1)
             });
         });
