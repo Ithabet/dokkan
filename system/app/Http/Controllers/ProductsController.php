@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\category;
+use App\Category;
 use App\Product;
 class ProductsController extends Controller
 {
@@ -18,7 +18,7 @@ class ProductsController extends Controller
         return view('products.products',compact('products'));
     }
     public function newCategory(){
-        $categories = category::all();
+        $categories = Category::all();
         return view('products.newCategory',compact('categories'));
     }
 
@@ -30,14 +30,14 @@ class ProductsController extends Controller
             'name.required'     => 'يجب اضافة اسم التصنيف'
         ];
         $this->validate($request,$rules,$messages);
-        $category = new category();
+        $category = new Category();
         $category->name = $request->name;
         $category->save();
         return redirect('products/categories');
 
     }
     public function newProduct(){
-        $categories = category::all();
+        $categories = Category::all();
         return view('products.newProduct',compact('categories'));
     }
     public function saveProduct(Request $request){
@@ -72,6 +72,13 @@ class ProductsController extends Controller
 
     }
     public function getAjaxProducts(Request $request){   
+
+        if($request->category){
+            $products = Product::select(['id','code','purchase_price as price','name as value'])
+            ->where('category_id','=',$request->category)
+            ->where('name','like','%'.$request->keywords.'%')->paginate($request->number_per_page);
+            return response()->json($products);
+        }
             $products = Product::select(['id','code','purchase_price as price','name as value'])->where('code','like','%'.$request->keywords.'%')
                             ->orWhere('name','like','%'.$request->keywords.'%')->paginate($request->number_per_page);
             return response()->json($products);

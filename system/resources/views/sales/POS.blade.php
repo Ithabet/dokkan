@@ -24,10 +24,10 @@
                 <form action="" method="post">
                     <div class="card-body " id="bar-parent">
                         <div class="row">
-                            <div class="col-sm-5">
+                            <div class="col-sm-4">
                                 <div class="row">
-                                    <div class="col-sm-5"><label>اسم العميل</label></div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-12"><label>اسم العميل</label></div>
+                                    <div class="col-sm-12">
                                             <select class="form-control  select2">
                                                 <option value="0">-- عميل عشوائي --</option>
                                                 @foreach($customers as $customer)
@@ -39,13 +39,13 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="row">
-                                    <div class="col-sm-6"><label>تاريخ العملية</label></div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12"><label>تاريخ العملية</label></div>
+                                    <div class="col-sm-12">
                                         <input class="mdl-textfield__input" type="text" value="{{ date('Y-m-d') }}" id="date" data-dtp="dtp_JFOV1">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <select class="form-control  select2">
                                     <option value="">-- رقم الطاولة --</option>
                                     <option value="1">طاولة 1</option>
@@ -58,14 +58,14 @@
                         <div class="row">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-5">
                                         المنتج / باركود
                                         <input type="text" dir="rtl" class="form-control" id="products">
                                         <input type="hidden" id="selected_product_id" value="">
                                         <input type="hidden" id="selected_product_price" value="">
 
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         الكمية
                                         <div class="input-group spinner">
                                             <span class="input-group-btn">
@@ -103,7 +103,7 @@
                                 الكمية
                             </div>
                             <div class="col-sm-2">
-                                سعر الوحدة
+                                السعر
                             </div>
                             <div class="col-sm-2">
                                 اجمالي
@@ -220,9 +220,12 @@
                 reCalculate();
             });
 
-            function load_products(keywords,number_per_page){
+            function load_products(keywords,number_per_page,category){
                 if(!keywords){
                     keywords = ' ';
+                }
+                if(!category){
+                    category = 0;
                 }
                 if(!number_per_page){
                     number_per_page = 15;
@@ -232,6 +235,7 @@
                         type: "post",
                         data: {
                             keywords: keywords,
+                            category: category,
                             number_per_page:number_per_page
                         },
                         success: function( data ) {
@@ -240,7 +244,7 @@
                             var html = "";
                             $.each(products,function(i,v){
                                 html += '<a href="#newProduct" data-id="'+v.id+'" data-value="'+v.value+'" data-price="'+v.price+'" '+
-                                'class="btn-product btn btn-info btn-circle m-b-10">'+v.value+'</a>';   
+                                'class="btn-product btn btn-info btn-circle m-b-10">'+v.value+'</a> ';   
                                 console.log(v);
                             });
                                $("#ajax_products").html(html);
@@ -248,7 +252,7 @@
                         }
                     } );
             }    
-            load_products(' ',4);
+            load_products(' ',4,0);
             $(document).on('click','.btn-product',function(){
                 console.log($(this).data());
                 var newProductId = $(this).data().id;
@@ -260,7 +264,12 @@
             });
             $('#SearchByName').keyup(function() {
                 var keywords = $(this).val();
-                load_products(keywords,4);
+                load_products(keywords,4,0);
+            });
+            $('input[name="category"]').change(function(){
+                   var keywords = $('#SearchByName').val();
+                   var category = $(this).val();
+                   load_products(keywords,4,category);
             });
             $( "#products" ).autocomplete({
                 source: function( request, response ) {
