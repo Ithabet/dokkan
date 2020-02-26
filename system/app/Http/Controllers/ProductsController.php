@@ -66,7 +66,7 @@ class ProductsController extends Controller
     }
     public function jsonsearch(Request $request)
     {
-        $products = Product::select(['id','code','purchase_price as price','name as value'])->where('code','like','%'.$request->keywords.'%')
+        $products = Product::select(['id','code','purchase_price as price','sell_price','name as value'])->where('code','like','%'.$request->keywords.'%')
                         ->orWhere('name','like','%'.$request->keywords.'%')->get();
         return response()->json($products);
 
@@ -74,12 +74,12 @@ class ProductsController extends Controller
     public function getAjaxProducts(Request $request){   
 
         if($request->category){
-            $products = Product::select(['id','code','purchase_price as price','name as value'])
+            $products = Product::select(['id','code','purchase_price','sell_price','name as value'])
             ->where('category_id','=',$request->category)
             ->where('name','like','%'.$request->keywords.'%')->paginate($request->number_per_page);
             return response()->json($products);
         }
-            $products = Product::select(['id','code','purchase_price as price','name as value'])->where('code','like','%'.$request->keywords.'%')
+            $products = Product::select(['id','code','purchase_price','sell_price','name as value'])->where('code','like','%'.$request->keywords.'%')
                             ->orWhere('name','like','%'.$request->keywords.'%')->paginate($request->number_per_page);
             return response()->json($products);
     }
