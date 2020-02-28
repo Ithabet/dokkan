@@ -24,10 +24,10 @@
                 <form action="" method="post">
                     <div class="card-body " id="bar-parent">
                         <div class="row">
-                            <div class="col-sm-5">
+                            <div class="col-sm-4">
                                 <div class="row">
-                                    <div class="col-sm-5"><label>اسم العميل</label></div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-12"><label>اسم العميل</label></div>
+                                    <div class="col-sm-12">
                                             <select class="form-control  select2">
                                                 <option value="0">-- عميل عشوائي --</option>
                                                 @foreach($customers as $customer)
@@ -39,13 +39,13 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="row">
-                                    <div class="col-sm-6"><label>تاريخ العملية</label></div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12"><label>تاريخ العملية</label></div>
+                                    <div class="col-sm-12">
                                         <input class="mdl-textfield__input" type="text" value="{{ date('Y-m-d') }}" id="date" data-dtp="dtp_JFOV1">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <select class="form-control  select2">
                                     <option value="">-- رقم الطاولة --</option>
                                     <option value="1">طاولة 1</option>
@@ -58,14 +58,14 @@
                         <div class="row">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-5">
                                         المنتج / باركود
                                         <input type="text" dir="rtl" class="form-control" id="products">
                                         <input type="hidden" id="selected_product_id" value="">
                                         <input type="hidden" id="selected_product_price" value="">
 
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         الكمية
                                         <div class="input-group spinner">
                                             <span class="input-group-btn">
@@ -103,7 +103,7 @@
                                 الكمية
                             </div>
                             <div class="col-sm-2">
-                                سعر الوحدة
+                                السعر
                             </div>
                             <div class="col-sm-2">
                                 اجمالي
@@ -174,9 +174,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6"><a href=""><a></div>
-                        <div class="col-sm-6"></div>
+                <hr>
+                <div id="pagination-area">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="#prev" data-type="prev" class="btn-pagination btn btn-success btn-block" >
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="#next" data-type="next" class="btn-pagination btn btn-success btn-block" >
+                                    <i class="fa fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,35 +231,75 @@
                 reCalculate();
             });
 
-            function load_products(keywords,number_per_page){
+            var init_number_per_page = 1;
+            var init_category = 0;
+            $(document).on('click','.btn-pagination',function(){
+                var action = $(this).attr('data-url');
+                action = action.split('?');
+                action = action[1];
+                if(action){
+                    page = '?'+action;
+                }
+               load_products(' ',init_number_per_page,'',page);
+                
+            });
+            function load_products(keywords,number_per_page,category,page){
                 if(!keywords){
                     keywords = ' ';
                 }
+                if(!page){
+                    page = '';
+                }
+                if(!category){
+                    category = 0;
+                }
+                $(document).find('input[name="category"]').each(function(){
+                        if($(this).parent('label').hasClass('is-checked')){
+                            category = $(this).val();
+                        }
+                    });
                 if(!number_per_page){
                     number_per_page = 15;
                 }
                 $.ajax( {
-                        url: "{{ URL::to('products/getAjaxProducts') }}",
+                        url: "{{ URL::to('products/getAjaxProducts') }}"+page,
                         type: "post",
                         data: {
                             keywords: keywords,
+                            category: category,
                             number_per_page:number_per_page
                         },
                         success: function( data ) {
                             var products = data.data;
                             var next_page = data.next_page_url;
+                            var prev_page = data.prev_page_url;
                             var html = "";
                             $.each(products,function(i,v){
-                                html += '<a href="#newProduct" data-id="'+v.id+'" data-value="'+v.value+'" data-price="'+v.price+'" '+
-                                'class="btn-product btn btn-info btn-circle m-b-10">'+v.value+'</a>';   
+                                html += '<a href="#newProduct" data-id="'+v.id+'" data-value="'+v.value+'" data-price="'+v.sell_price+'" '+
+                                'class="btn-product btn btn-info btn-circle m-b-10">'+v.value+'</a> ';   
                                 console.log(v);
                             });
+                               
+
+                               $(document).find('.btn-pagination').each(function(){
+                                    var action_type = $(this).data('type');
+                                    
+                                        if(action_type =='prev'){
+                                        console.log(prev_page)
+                                        $(this).attr('data-url',prev_page) ;
+                                        }
+                                        if(action_type =='next'){
+                                        $(this).attr('data-url',next_page) ;
+                                        console.log(next_page)
+                                        }
+                                    
+                               });
                                $("#ajax_products").html(html);
                             console.log(data);   
                         }
                     } );
             }    
-            load_products(' ',4);
+            load_products(' ',init_number_per_page,init_category,'');
             $(document).on('click','.btn-product',function(){
                 console.log($(this).data());
                 var newProductId = $(this).data().id;
@@ -260,7 +311,12 @@
             });
             $('#SearchByName').keyup(function() {
                 var keywords = $(this).val();
-                load_products(keywords,4);
+                load_products(keywords,number_per_page,0,'');
+            });
+            $('input[name="category"]').change(function(){
+                   var keywords = $('#SearchByName').val();
+                   var category = $(this).val();
+                   load_products(keywords,1,category,'');
             });
             $( "#products" ).autocomplete({
                 source: function( request, response ) {
@@ -279,7 +335,7 @@
                 minLength: 2,
                 select: function( event, ui ) {
                     $('#selected_product_id').val(ui.item.id);
-                    $('#selected_product_price').val(ui.item.price);
+                    $('#selected_product_price').val(ui.item.sell_price);
                 }
             } );
             function checkProduct(productId){

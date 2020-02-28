@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Product;
-use App\category;
+use App\Category;
 class salesController extends Controller
 {
     //
@@ -20,7 +20,7 @@ class salesController extends Controller
     public function pos(){
         $customers = Customer::all();
         $products = Product::all();
-        $categories = category::all();
+        $categories = Category::all();
         return view('sales.POS',compact('customers','products','categories'));
     }
     public function savePurchase(){
