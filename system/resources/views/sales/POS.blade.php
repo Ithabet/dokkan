@@ -133,7 +133,7 @@
                             <hr />
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-lg btn-block btn-success">تنفيذ</button>
+                                    <button type="button" id="ConfirmSale" data-toggle="modal" data-target="#ConfirmSalePopUp" class="btn btn-lg btn-block btn-success">تنفيذ</button>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +193,28 @@
             </div>
         </div>
     </div>
-    
+    <div class="modal fade" id="ConfirmSalePopUp" tabindex="-1" role="dialog" aria-labelledby="ConfirmSalePopUpTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <label id="ConfirmSalePopUpTitle">تـأكيد الفاتورة</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="final-recipt">
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+                <button type="button" class="btn btn-primary">تأكيد</button>
+                <button type="button" class="btn btn-primary">تأكيد + طباعة</button>
+            </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('EXTJS')
@@ -231,21 +252,23 @@
                 reCalculate();
             });
 
-            var init_number_per_page = 1;
+            var init_number_per_page = 2;
             var init_category = 0;
             $(document).on('click','.btn-pagination',function(){
                 var action = $(this).attr('data-url');
+                if(action){
                 action = action.split('?');
                 action = action[1];
-                if(action){
+                
                     page = '?'+action;
+                    load_products(' ',init_number_per_page,'',page);
                 }
-               load_products(' ',init_number_per_page,'',page);
+               
                 
             });
             function load_products(keywords,number_per_page,category,page){
                 if(!keywords){
-                    keywords = ' ';
+                    keywords = '';
                 }
                 if(!page){
                     page = '';
@@ -279,7 +302,7 @@
                                 'class="btn-product btn btn-info btn-circle m-b-10">'+v.value+'</a> ';   
                                 console.log(v);
                             });
-                               
+                            $("#ajax_products").html(html);
 
                                $(document).find('.btn-pagination').each(function(){
                                     var action_type = $(this).data('type');
@@ -294,7 +317,7 @@
                                         }
                                     
                                });
-                               $("#ajax_products").html(html);
+                               
                             console.log(data);   
                         }
                     } );
@@ -311,12 +334,15 @@
             });
             $('#SearchByName').keyup(function() {
                 var keywords = $(this).val();
-                load_products(keywords,number_per_page,0,'');
+                load_products(keywords,init_number_per_page,'','');
             });
-            $('input[name="category"]').change(function(){
+            $(document).on('change','input[name="category"]',function(){
                    var keywords = $('#SearchByName').val();
-                   var category = $(this).val();
-                   load_products(keywords,1,category,'');
+                   
+                         var   category = $(this).val();
+                         console.log(category);
+                       
+                   load_products(keywords,init_number_per_page,category,'');
             });
             $( "#products" ).autocomplete({
                 source: function( request, response ) {

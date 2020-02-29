@@ -59,7 +59,7 @@
                     <div class="col-sm-12">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <input class="mdl-textfield__input" name="purchase_price"  type="text" id="txtFirstName">
-                            <label class="mdl-textfield__label">سعر الشراء</label>
+                            <label class="mdl-textfield__label">سعر التكلفة</label>
                         </div>
                     </div>
                     <div class="col-sm-12">
