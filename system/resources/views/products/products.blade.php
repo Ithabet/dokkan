@@ -13,40 +13,130 @@
                     </div>
                 </div>
                 <div class="card-body " id="bar-parent">
-                    <table class="dataTable table table-hover table-striped" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>اسم المنتج</th>
-                            <th>التصنيف</th>
-                            <th>كود المنتج</th>
-                            <th>سعر البيع</th>
-                            <th>سعر الشراء</th>
-                            <th>الكمية المتاحة</th>
-                            <th>خيارات</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($products as $product)
-                            <tr>
-                                <td><a href="{{ URL::to('product/'.$product->id) }}">{{ $product->name }}</a></td>
-                                <td>{{ $product->category->name }}</td>
-                                <td>{{ $product->code }}</td>
-                                <td>{{ $product->sell_price }}</td>
-                                <td>{{ $product->purchase_price }}</td>
-                                <td>{{ $product->quantity }}</td>
+                    <header class="panel-heading panel-heading-gray custom-tab ">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a href="#all" data-toggle="tab" class="active show">الكل</a>
+                            </li>
+                            <li class="nav-item"><a href="#full" data-toggle="tab" class="">تام</a>
+                            </li>
+                            <li class="nav-item"><a href="#material" data-toggle="tab" class="">خام</a>
+                            </li>
+                        </ul>
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content bordered">
+                            <div class="tab-pane active show" id="all">
+                                <table class="dataTable table table-hover table-striped" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>اسم المنتج</th>
+                                        <th>التصنيف</th>
+                                        <th>كود المنتج</th>
+                                        <th>سعر البيع</th>
+                                        <th>سعر التكلفة</th>
+                                        <th>الكمية المتاحة</th>
+                                        <th>خيارات</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($products as $product)
+                                        <tr>
+                                            <td><a href="{{ URL::to('product/'.$product->id) }}">{{ $product->name }}</a></td>
+                                            <td>{{ $product->category->name }}</td>
+                                            <td>{{ $product->code }}</td>
+                                            <td>{{ $product->sell_price }}</td>
+                                            <td>{{ $product->purchase_price }}</td>
+                                            <td>{{ $product->quantity }}</td>
 
-                                <td>
-                                    <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                                            <td>
+                                                <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
+                                                    <i class="fa fa-trash-o "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>  
+                            </div>
+                            <div class="tab-pane" id="material">
+                                <table class="dataTable table table-hover table-striped" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>اسم المنتج</th>
+                                        <th>التصنيف</th>
+                                        <th>كود المنتج</th>
+                                        <th>سعر التكلفة</th>
+                                        <th>سعر الشراء</th>
+                                        <th>الكمية المتاحة</th>
+                                        <th>خيارات</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($products as $product)
+                                    @if($product->type == 'm')
+                                        <tr>
+                                            <td><a href="{{ URL::to('product/'.$product->id) }}">{{ $product->name }}</a></td>
+                                            <td>{{ $product->category->name }}</td>
+                                            <td>{{ $product->code }}</td>
+                                            <td>{{ $product->sell_price }}</td>
+                                            <td>{{ $product->purchase_price }}</td>
+                                            <td>{{ $product->quantity }}</td>
+
+                                            <td>
+                                                <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
+                                                    <i class="fa fa-trash-o "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                                </table>  
+                            </div>
+                            <div class="tab-pane" id="full">
+                                <table class="dataTable table table-hover table-striped" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>اسم المنتج</th>
+                                        <th>التصنيف</th>
+                                        <th>كود المنتج</th>
+                                        <th>سعر البيع</th>
+                                        <th>سعر التكلفة</th>
+                                        <th>خيارات</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($products as $product)
+                                    @if($product->type == 'f')
+                                        <tr>
+                                            <td><a href="{{ URL::to('product/'.$product->id) }}">{{ $product->name }}</a></td>
+                                            <td>{{ $product->category->name }}</td>
+                                            <td>{{ $product->code }}</td>
+                                            <td>{{ $product->sell_price }}</td>
+                                            <td>{{ $product->purchase_price }}</td>
+                                            <td>
+                                                <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
+                                                    <i class="fa fa-trash-o "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                                </table>  
+                            </div>
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </div>
