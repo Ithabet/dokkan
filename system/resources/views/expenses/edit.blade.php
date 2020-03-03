@@ -12,37 +12,37 @@
         <div class="col-sm-5">
             <div class="card-box">
                 <div class="card-head">
-                    <header>إضافة مصروفات</header>
+                    <header>تعديل مصروف</header>
                     <div class="btn-group pull-left">
                         <a href="{{ URL::to('expenses') }}"  class="btn btn-danger">
                             <i class="fa fa-ban"></i> الغاء
                         </a>
                     </div>
                 </div>
-                <form action="{{ url('expenses/new') }}" method="POST">
+                <form action="{{ url('expenses/update/'.$expense->id) }}" method="POST">
                     {{ csrf_field() }}
                 <div class="card-body row">
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="name" value="{{ old('name') }}" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="name" value="{{ $expense->name }}" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">عنوان المصروف</label>
                         </div>
                     </div>
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="paied_to" value="{{ old('paied_to') }}" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="paied_to" value="{{ $expense->paied_to }}" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">جهة الصرف</label>
                         </div>
                     </div>
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="amount" value="{{ old('amount') }}" type="text" id="txtFirstName">
+                            <input class="mdl-textfield__input" name="amount" value="{{ $expense->amount }}" type="text" id="txtFirstName">
                             <label class="mdl-textfield__label">المبلغ</label>
                         </div>
                     </div>
                     <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="date" value="{{ old('date') }}" value="{{ date('Y-m-d') }}" id="date" data-dtp="dtp_JFOV1">
+                            <input class="mdl-textfield__input" type="text" name="date" value="{{ $expense->date }}" value="{{ date('Y-m-d') }}" id="date" data-dtp="dtp_JFOV1">
                             <label class="mdl-textfield__label">التاريخ</label>
                         </div>
                     </div>
@@ -53,51 +53,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-7 col-sm-7">
-            <div class="card card-box">
-                <div class="card-head">
-                    <header>المصروفات</header>
 
-                </div>
-                <div class="card-body " id="bar-parent">
-                    <table class="dataTable table table-hover table-striped" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>جهة الصرف</th>
-                            <th>التاريخ</th>
-                            <th>عنوان المصروف</th>
-                            <th>المبلغ</th>
-                            <th>خيارات</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if(isset($expences))
-                            @foreach($expences as $expense)
-                        <tr>
-
-                            <td><a href="{{ URL::to('purchase/') }}">{{ $expense->paied_to }}</a></td>
-                            <td>{{ $expense->date }}</td>
-                            <td>{{ $expense->name }}</td>
-                            <td>{{ $expense->amount }}</td>
-                            <td>
-                                <a href="{{ url('/expenses/edit/'.$expense->id) }}" class="btn btn-primary btn-xs">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <a href="{{ url('/expenses/delete/'.$expense->id) }}" onclick="confirm('Are You Sure?')" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
-
-                            </td>
-                        </tr>
-                        @endforeach
-                        @endif
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @stop
 

@@ -48,5 +48,40 @@ class SuppliersController extends Controller
 
         return redirect('persons/suppliers');
     }
+
+    public function edit($id){
+        $supplier=Supplier::find($id);
+        return view('persons.editSupplier',compact('supplier'));
+    }
+
+    public  function update(Request $request,$id){
+        $rules = [
+            'name'  => 'required',
+            'phone' => 'required'
+        ];
+        $messages = [
+            'name.required'     => 'يجب اضافة اسم المورد',
+            'phone.required'    =>'يجب اضافة هاتف االمورد',
+
+        ];
+
+        $this->validate($request,$rules,$messages);
+
+        $supplier =Supplier::find($id);
+        $supplier->name     = $request->name;
+        $supplier->phone    = $request->phone;
+        $supplier->save();
+
+
+        return redirect('persons/suppliers');
+    }
+
+    public function destroy($id)
+    {
+        $section = Supplier::find($id)->delete();
+        session()->flash('successmessage', 'تم حذف المورد  بنجاح ');
+        return redirect('/persons/suppliers');
+
+    }
 }
 

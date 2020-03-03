@@ -51,4 +51,36 @@ class CustomersController extends Controller
 
         return redirect('persons/customers');
     }
+
+    public function edit($id){
+        $customer=Customer::find($id);
+        return view('persons.editCustomer',compact('customer'));
+    }
+
+    public function update(Request $request,$id)
+    {
+        $rules = [
+            'name'  => 'required',
+            'phone' => 'required'
+        ];
+        $messages = [
+            'name.required'     => 'يجب اضافة اسم العميل',
+            'phone.required'    =>'يجب اضافة هاتف العميل'
+        ];
+        $this->validate($request,$rules,$messages);
+        $customer = Customer::find($id);
+        $customer->name     = $request->name;
+        $customer->phone    = $request->phone;
+        $customer->save();
+        $request->session()->flash('successmessage', 'تم تعديل بيانات العميل بنجاح ');
+        return redirect('/persons/customers');
+    }
+
+    public function destroy($id)
+    {
+        $section = Customer::find($id)->delete();
+        session()->flash('successmessage', 'تم حذف العميل بنجاح ');
+        return redirect('/persons/customers');
+
+    }
 }

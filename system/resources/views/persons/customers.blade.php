@@ -33,12 +33,13 @@
                                 <td>1500</td>
                                 <td>{{ $customer->transactions()->latest('created_at')->first()->balance }}</td>
                                 <td>
-                                    <a href="edit_professor.html" class="btn btn-primary btn-xs">
+                                    <a href="{{ url('persons/customers/edit/'.$customer->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </button>
+                                    <a href="{{ url('persons/customers/delete/'.$customer->id) }}" onclick="confirm('هل انت متأكد من حذف العميل ؟')" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+
                                 </td>
                             </tr>
                             @endforeach

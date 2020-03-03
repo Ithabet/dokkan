@@ -211,6 +211,32 @@
                         </div>
                     </div>
                 @endif
+
+                    @if(session()->has('successmessage'))
+                        <div class="col-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <ul>
+                                   <li>{{session('successmessage')}}.</li>
+                                </ul>
+                                <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
+                    @if(session()->has('errormessage'))
+                        <div class="col-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <ul>
+                                    <li>{{session('errormessage')}}.</li>
+                                </ul>
+                                <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    @endif
                 @yield('content')
             </div>
         </div>

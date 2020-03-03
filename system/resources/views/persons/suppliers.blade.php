@@ -33,12 +33,14 @@
                                 <td>1500</td>
                                 <td>{{$supplier->transactions()->sum('balance')}}</td>
                                 <td>
-                                    <a href="edit_professor.html" class="btn btn-primary btn-xs">
+                                    <a href="{{ url('/persons/suppliers/edit/'.$supplier->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </button>
+
+                                    <a href="{{ url('/persons/suppliers/delete/'.$supplier->id) }}" onclick="confirm('هل انت متاكد من الحذف ؟')" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+
                                 </td>
                             </tr>
                             @endforeach

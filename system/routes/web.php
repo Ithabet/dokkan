@@ -24,11 +24,23 @@ Route::get('persons/customers', 'CustomersController@index');
 Route::get('persons/customer/{customer}', 'CustomersController@customer');
 Route::get('persons/customers/new', 'CustomersController@newCustomer');
 Route::post('persons/customers/new', 'CustomersController@saveCustomer');
+Route::get('persons/customers/edit/{id}', 'CustomersController@edit');
+Route::post('persons/customers/update/{id}', 'CustomersController@update');
+Route::get('persons/customers/delete/{id}', 'CustomersController@destroy');
+
+
+
 
 
 Route::get('persons/suppliers', 'SuppliersController@index');
 Route::get('persons/suppliers/new', 'SuppliersController@newSupplier');
 Route::post('persons/suppliers/new', 'SuppliersController@saveSupplier');
+Route::get('persons/suppliers/edit/{id}', 'SuppliersController@edit');
+Route::post('persons/suppliers/update/{id}', 'SuppliersController@update');
+Route::get('persons/suppliers/delete/{id}', 'SuppliersController@destroy');
+
+
+
 
 Route::get('products/', 'ProductsController@index');
 Route::post('products/JSON-search', 'ProductsController@jsonsearch');
@@ -54,7 +66,13 @@ Route::get('persons/users/new', 'UsersController@newUser');
 Route::post('persons/users/new', 'UsersController@saveUser');
 
 Route::get('expenses/', 'expensesController@index');
-Route::post('expenses/new', 'expensesController@saveExpenses');
+Route::post('expenses/new', 'expensesController@store');
+Route::get('expenses/edit/{id}', 'expensesController@edit');
+Route::post('expenses/update/{id}', 'expensesController@update');
+Route::get('expenses/delete/{id}', 'expensesController@destroy');
+
+
+
 
 
 Route::get('poss/', 'PossController@index');
