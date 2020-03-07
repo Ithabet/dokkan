@@ -41,9 +41,9 @@ Route::post('products/new', 'ProductsController@saveProduct');
 
 
 
-Route::get('purchases/', 'purchasesController@index');
-Route::get('purchases/new', 'purchasesController@newPurchase');
-Route::post('purchases/new', 'purchasesController@savePurchase');
+Route::get('purchases/', 'PurchasesController@index');
+Route::get('purchases/new', 'PurchasesController@newPurchase');
+Route::post('purchases/new', 'PurchasesController@savePurchase');
 
 Route::get('sales/', 'salesController@index');
 Route::get('sales/pos', 'salesController@pos');
