@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc3fa3b8-556b-456b-8a95-63c2a8b0d7c0" name="Default Changelist" comment="pushhing project for the first time">
+      <change afterPath="$PROJECT_DIR$/system/resources/views/sales/print.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dokkan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dokkan.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/app/Http/Controllers/CustomersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/app/Http/Controllers/CustomersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/resources/views/expenses/expenses.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/expenses/expenses.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/resources/views/persons/customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/persons/customer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/pages/table/table_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/table/table_data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/app/Http/Controllers/salesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/app/Http/Controllers/salesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/resources/views/sales/POS.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/sales/POS.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/resources/views/sales/sales.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/resources/views/sales/sales.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/routes/web.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,14 +21,6 @@
     <execution>
       <executable />
     </execution>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>ms-trigger</find>
-      <find>input-sm</find>
-      <find>consol</find>
-      <find>label</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -102,33 +93,28 @@
   </component>
   <component name="ProjectId" id="1SOOjP3rKYmzlvsJtuVcHALMjU2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value="theme&#9;FILE&#9;file://D:/xampp/htdocs/dokkan/assets/css/theme/rtl/theme_style.css" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/system/resources/views/persons" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../foodoma" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\dokkan\system\resources\views\sales" />
       <recent name="D:\xampp\htdocs\dokkan\system\resources\views\persons" />
       <recent name="D:\xampp\htdocs\dokkan\system\app\Http\Controllers" />
       <recent name="D:\xampp\htdocs\dokkan\system\resources\views\expenses" />
-      <recent name="D:\xampp\htdocs\dokkan\system\resources\views\sales" />
       <recent name="D:\xampp\htdocs\dokkan\system\resources\views\purchases" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -151,6 +137,12 @@
       <workItem from="1569409528017" duration="599000" />
       <workItem from="1570521113439" duration="867000" />
       <workItem from="1571431329211" duration="2692000" />
+      <workItem from="1582985602439" duration="7234000" />
+      <workItem from="1583094825099" duration="2611000" />
+      <workItem from="1583226586985" duration="1195000" />
+      <workItem from="1583347869917" duration="2997000" />
+      <workItem from="1583412546942" duration="11463000" />
+      <workItem from="1583529931802" duration="154000" />
     </task>
     <servers />
   </component>
@@ -173,5 +165,31 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="pushhing project for the first time" />
     <option name="LAST_COMMIT_MESSAGE" value="pushhing project for the first time" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1583529961855">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583529961855" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1582985824508">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1582985824508" />
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1582985610870">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582985610870" />
+    <state x="379" y="0" width="842" height="728" key="find.popup" timestamp="1583436370718">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="0" width="842" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1583436370718" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1583414941167">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1583414941167" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1583414577576">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583414577576" />
   </component>
 </project>

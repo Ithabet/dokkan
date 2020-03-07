@@ -28,8 +28,8 @@
                                 <div class="row">
                                     <div class="col-sm-12"><label>اسم العميل</label></div>
                                     <div class="col-sm-12">
-                                            <select class="form-control  select2">
-                                                <option value="0">-- عميل عشوائي --</option>
+                                            <select id="CustomerID" name="customer_id" class="form-control  select2">
+                                                <option value="0">عميل افتراضي</option>
                                                 @foreach($customers as $customer)
                                                 <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                 @endforeach
@@ -41,18 +41,23 @@
                                 <div class="row">
                                     <div class="col-sm-12"><label>تاريخ العملية</label></div>
                                     <div class="col-sm-12">
-                                        <input class="mdl-textfield__input" type="text" value="{{ date('Y-m-d') }}" id="date" data-dtp="dtp_JFOV1">
+                                        <input id="receiptDate" class="mdl-textfield__input" type="text" value="{{ date('Y-m-d') }}" id="date" data-dtp="dtp_JFOV1">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <select class="form-control  select2">
-                                    <option value="">-- رقم الطاولة --</option>
+                                <select id="orderType" class="form-control  select2">
+                                    <option value="0">صالة</option>
+                                    <option value="1">تيك اواي</option>
+                                    <option value="2">ديليفري</option>
+                                </select>
+                                <select id="TableID" class="form-control  select2">
+                                    <option value="0">-- رقم الطاولة --</option>
                                     <option value="1">طاولة 1</option>
                                     <option value="2">طاولة 2</option>
-                                    <option value="0">تيك اواي 2</option>
                                 </select>
                             </div>
+
                         </div>
                         <hr />
                         <div class="row">
@@ -133,7 +138,7 @@
                             <hr />
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" id="ConfirmSale" data-toggle="modal" data-target="#ConfirmSalePopUp" class="btn btn-lg btn-block btn-success">تنفيذ</button>
+                                    <button type="button" id="ConfirmSale" data-toggle="modal" data-target="#ConfirmSalePopUp" class="btn-confirm-sale btn btn-lg btn-block btn-success">تنفيذ</button>
                                 </div>
                             </div>
                         </div>
@@ -196,23 +201,85 @@
     <div class="modal fade" id="ConfirmSalePopUp" tabindex="-1" role="dialog" aria-labelledby="ConfirmSalePopUpTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <label id="ConfirmSalePopUpTitle">تـأكيد الفاتورة</label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="final-recipt">
-                    
+                    <form action="{{ URL::to('sales/new') }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="modal-header">
+                            <label id="ConfirmSalePopUpTitle">تـأكيد الفاتورة</label>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="final-recipt" >
+
+                                    <input hidden id="f_receipt_customer" name="customer_id" value="" />
+                                    <input hidden id="f_receipt_date" name="receipt_date" value="" />
+                                    <input hidden id="f_receipt_type" name="order_type" value="" />
+                                    <input hidden id="f_receipt_table_number" name="table_number" value="" />
+
+                                    <table class="table">
+                                        <tr>
+                                            <td>اسم العميل</td>
+                                            <td id="final_receipt_customer_name"></td>
+                                            <td>تاريخ العملية</td>
+                                            <td id="final_receipt_date"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>نوع الطلب</td>
+                                            <td id="final_receipt_type"></td>
+                                            <td>رقم الطاولة</td>
+                                            <td id="final_receipt_table_number"></td>
+                                        </tr>
+                                    </table>
+                                    <table class="table table-striped" hidden>
+                                        <thead>
+                                            <th></th>
+                                            <th>اسم الصنف</th>
+                                            <th>كمية</th>
+                                            <th>سعر</th>
+                                            <th>اجمالي</th>
+                                        </thead>
+                                        <tbody id="finalReceiptTable">
+
+                                        </tbody>
+                                    </table>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>اجمالي</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input id="f_receipt_total"  autofocus type="text" readonly name="total" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>المدفوع</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input id="f_receipt_paid" value="0"  autofocus type="text" name="paid" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-success" value="" id="auto_fill_paid"></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>المتبقي</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label id="_receipt_recent"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+                            <button type="button" class="btn btn-primary">تأكيد</button>
+                            <button type="submit" class="btn btn-primary">تأكيد + طباعة</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
-                <button type="button" class="btn btn-primary">تأكيد</button>
-                <button type="button" class="btn btn-primary">تأكيد + طباعة</button>
-            </div>
-            </div>
         </div>
     </div>
 @stop
@@ -241,6 +308,58 @@
             
             var productsList = [];
 
+            $(document).on('click','.btn-confirm-sale',function () {
+                var FinalProductsList = [];
+                var TableRows = "";
+                var Row = '';
+                var receipt_total = 0;
+                $('.product').each(function(i){
+                    var ProductID = $(this).data('id');
+                    var ProductName =$('.ProductName[data-id="'+ProductID+'"]').data('name');
+                    var ProductQuantity = $('.quantity[data-id="'+ProductID+'"]').val();
+                    var ProductPrice = $('.price[data-id="'+ProductID+'"]').val();
+                    FinalProductsList[ProductID] = [];
+                    FinalProductsList[ProductID]['ID'] = ProductID;
+                    FinalProductsList[ProductID]['Name'] = ProductName;
+                    FinalProductsList[ProductID]['Quantity'] = parseFloat(ProductQuantity);
+                    FinalProductsList[ProductID]['Price'] = parseFloat(ProductPrice);
+                    FinalProductsList[ProductID]['Total'] = parseFloat(ProductPrice*ProductQuantity);
+                    Row = '<tr><td><input hidden type="text" name="product_id[]" value="'+ProductID+'" >' +
+                        i+1+'</td><td>'+ProductName+'</td>' +
+                        '<td><input hidden type="text" name="product_quantity[]" value="'+ProductQuantity+'" >'
+                        +ProductQuantity+'</td>'+
+                            '<td><input hidden type="text" name="product_price[]" value="'+ProductPrice+'" >'
+                        +ProductPrice+'</td><td>'+ProductPrice*ProductQuantity+'</td></tr>';
+                    receipt_total += parseFloat(ProductPrice*ProductQuantity);
+                    TableRows += Row;
+                    
+                });
+                var customerID      = $('#CustomerID').val();
+                var customerName    = $('#CustomerID').children('option[value="'+customerID+'"]').text();
+                var receiptDate     = $('#receiptDate').val();
+                var orderTypeID     = $('#orderType').val();
+                var orderType       = $('#orderType').children('option[value="'+orderTypeID+'"]').text();
+                var TableNumber     = $('#TableID').val();
+                $('#final_receipt_customer_name').html(customerName);
+                $('#final_receipt_date').html(receiptDate);
+                $('#final_receipt_type').html(orderType);
+                $('#final_receipt_table_number').html(TableNumber);
+                $('#finalReceiptTable').html(TableRows);
+
+                $('#f_receipt_customer').val(customerID);
+                $('#f_receipt_date').val(receiptDate);
+                $('#f_receipt_type').val(orderTypeID);
+                $('#f_receipt_table_number').val(TableNumber);
+                $('#f_receipt_total').val(receipt_total);
+                $('#f_receipt_recent').text(receipt_total);
+                $('#auto_fill_paid').val(receipt_total);
+                $('#auto_fill_paid').html(receipt_total);
+            });
+            $(document).on('click','#auto_fill_paid',function(){
+                var receipt_total = $(this).val();
+                $('#f_receipt_paid').val(receipt_total);
+                $('#f_receipt_recent').text(0);
+            });
             $(document).on('click','.remove',function () {
                 var product_id = $(this).data('id');
                 function checkCurrentProduct(productId) {
@@ -407,13 +526,14 @@
                         productsList.push(newProductId);
                         $('#productsList').append('<div data-id="'+newProductId+'" class="row product product_'+newProductId+'">' +
                             '<div class="col-sm-4">' +
-                            '<input type="hidden" value="'+newProductId+'" name="productID[]"><label>'+newProductName+'</label>' +
+                            '<input type="hidden" value="'+newProductId+'" class="ProductID" name="productID[]"><label class="ProductName" data-id="'+newProductId+'" data-name="'+newProductName+'">'+newProductName+'</label>' +
                             '</div>' +
                             '<div class="col-sm-2">' +
-                            '<input type="number" data-id="'+newProductId+'" name="productQuantity[]" class="form-control input-sm text-center quantity " value="'+quantity+'" min="1">\n' +
+                            '<input type="number" data-id="'+newProductId+'"  name="productQuantity[]" class="form-control input-sm text-center quantity " value="'+quantity+'" min="1">\n' +
                             '</div>' +
-                            '<div class="col-sm-2"><input type="text" data-id="'+newProductId+'" value="'+price+'" class="form-control text-center input-sm price " > </div>' +
-                            '<div class="col-sm-2"><span class="total total_'+newProductId+'">'+product_total+' </span></div>' +
+                            '<div class="col-sm-2"><input name="productPrice[]" type="text" data-id="'+newProductId+'" value="'+price+'" class="form-control text-center input-sm price " > </div>' +
+                            '<div class="col-sm-2"><span class="total total_'+newProductId+'">'+product_total+' </span>' +
+                            '<input type="hidden" value="'+newProductId+'" class="ProductTotal" name="productTotal[]"></div>' +
                             '<div class="col-sm-2"><button data-id="'+newProductId+'" type="button" class="btn btn-sm btn-danger btn-block remove"><span class="fa fa-remove"></span></button></div>' +
                             '</div>' );
                     }
