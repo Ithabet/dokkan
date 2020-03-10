@@ -20,24 +20,12 @@
     <center>
         <table  style="border-collapse: collapse;" border = "1" cellpadding = "10">
             <tr>
-                <td>اسم العميل</td><td>نوع الطلب</td><td>رقم الطاولة</td><td>تاريخ العملية</td>
+                <td>اسم المورد</td><td>تاريخ العملية</td>
             </tr>
             <tr>
-                <td>{{ $sale->customer->name }}</td>
+                <td>{{ $purchase->supplier->name }}</td>
 
-                <td>
-                    @if($sale->order_type == 0)
-                        صالة
-                    @elseif($sale->order_type == 1)
-                        نيك أواي
-                    @else
-                        ديليفري
-                    @endif
-                </td>
-
-                <td>{{ $sale->table_number }}</td>
-
-                <td>{{ $sale->created_at->format('Y-m-d') }}</td>
+                <td>{{ $purchase->created_at->format('Y-m-d') }}</td>
             </tr>
         </table>
         <br>
@@ -49,7 +37,7 @@
                 <td> كمية </td>
                 <td> اجمالي </td>
             </tr>
-            @foreach($sale->items as $i=>$item)
+            @foreach($purchase->items as $i=>$item)
             <tr>
                 <td> {{$i+1}} </td>
                 <td> {{ $item->product->name }} </td>
@@ -60,7 +48,7 @@
             @endforeach
             <tr>
                 <td colspan="4"><b>اجمالي</b></td>
-                <td><b> {{ $sale->total }} </b></td>
+                <td><b> {{ $purchase->total }} </b></td>
             </tr>
         </table>
     </center>

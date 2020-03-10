@@ -45,6 +45,7 @@ Route::get('persons/suppliers/delete/{id}', 'SuppliersController@destroy');
 Route::get('products/', 'ProductsController@index');
 Route::post('products/JSON-search', 'ProductsController@jsonsearch');
 Route::post('products/getAjaxProducts', 'ProductsController@getAjaxProducts');
+Route::post('products/getAjaxPProducts', 'ProductsController@getAjaxPProducts');
 
 Route::get('products/categories', 'ProductsController@newCategory');
 Route::post('products/categories/new', 'ProductsController@saveCategory');
@@ -56,6 +57,7 @@ Route::post('products/new', 'ProductsController@saveProduct');
 Route::get('purchases/', 'PurchasesController@index');
 Route::get('purchases/new', 'PurchasesController@newPurchase');
 Route::post('purchases/new', 'PurchasesController@savePurchase');
+Route::get('purchase/print/receipt/{purchase}', 'PurchasesController@receipt');
 
 Route::get('sales/', 'salesController@index');
 Route::get('sales/pos', 'salesController@pos');

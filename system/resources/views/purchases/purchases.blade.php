@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="card-body " id="bar-parent">
-                    <table class="dataTable table table-hover table-striped" style="width:100%">
+                    <table class="table table-hover table-striped" style="width:100%">
                         <thead>
                         <tr>
                             <th>كود العملية</th>
@@ -22,18 +22,27 @@
                             <th>قيمة العملية</th>
                             <th>المدفوع</th>
                             <th>المتبقي</th>
+                            <th>الحالة</th>
                             <th>خيارات</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($purchases as $purchase)
                             <tr>
+                                <td><a href="{{ URL::to('sales/') }}">{{ $purchase->user_id }}#{{ $purchase->id }}</a></td>
 
-                                <td><a href="{{ URL::to('purchase/') }}">18458</a></td>
-                                <td>18/09/2019</td>
-                                <td>محمود الجمال</td>
-                                <td>14520</td>
-                                <td>12000</td>
-                                <td>2520</td>
+                                <td>{{ $purchase->created_at->format('Y-m-d') }}</td>
+                                <td>{{ $purchase->supplier->name }}</td>
+                                <td>{{ $purchase->total }}</td>
+                                <td>{{ $purchase->paid }}</td>
+                                <td>{{ $purchase->total - $purchase->paid }}</td>
+                                <td>
+                                    @if($purchase->status)
+                                        <label class="label label-rouded label-success">مدفوع</label>
+                                    @else
+                                        <label class="label label-rouded label-warning">غير مدفوع</label>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="edit_professor.html" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
@@ -43,7 +52,16 @@
                                     </button>
                                 </td>
                             </tr>
+                        @endforeach
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="9">
+
+                                {{ $purchases->links() }}
+                            </td>
+                        </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
