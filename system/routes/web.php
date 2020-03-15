@@ -76,6 +76,17 @@ Route::post('expenses/update/{id}', 'expensesController@update');
 Route::get('expenses/delete/{id}', 'expensesController@destroy');
 
 
+Route::get('withdrawals/', 'WithdrawalsController@index');
+Route::post('withdrawals/new', 'WithdrawalsController@store');
+Route::get('withdrawals/edit/{id}', 'WithdrawalsController@edit');
+Route::post('withdrawals/update/{id}', 'WithdrawalsController@update');
+Route::get('withdrawals/delete/{id}', 'WithdrawalsController@destroy');
+
+Route::get('deposits/', 'DepositsController@index');
+Route::post('deposits/new', 'DepositsController@store');
+Route::get('deposits/edit/{id}', 'DepositsController@edit');
+Route::post('deposits/update/{id}', 'DepositsController@update');
+Route::get('deposits/delete/{id}', 'DepositsController@destroy');
 
 
 

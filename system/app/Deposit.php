@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Withdrawal extends Model
+class Deposit extends Model
 {
     public function user(){
         return $this->belongsTo(User::class);

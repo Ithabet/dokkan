@@ -187,17 +187,17 @@
                                 <span class="arrow "></span>
                             </a>
                         </li>
-                        <li class="nav-item {{ (Request::is('cash*')) ? 'active' : '' }}">
+                        <li class="nav-item {{ (Request::is('withdrawals*') || Request::is('deposits*')) ? 'active' : '' }}">
                             <a href="#" class="nav-link nav-toggle"> <i class="material-icons">view_module</i>
                                 <span class="title">التعاملات النقدية</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item {{ (Request::is('cash/withdraw*')) ? 'active' : '' }}">
-                                    <a href="{{ URL::to('cash/withdraw') }}" class="nav-link "> <span class="title">سحب</span>
+                                <li class="nav-item {{ (Request::is('withdrawals*')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('withdrawals') }}" class="nav-link "> <span class="title">سحب</span>
                                     </a>
                                 </li>
-                                <li class="nav-item {{ (Request::is('cash/deposit*')) ? 'active' : '' }}">
-                                    <a href="{{ URL::to('cash/deposit') }}" class="nav-link "> <span class="title">إيداع</span>
+                                <li class="nav-item {{ (Request::is('deposits*')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('deposits') }}" class="nav-link "> <span class="title">إيداع</span>
                                     </a>
                                 </li>
                             </ul>
