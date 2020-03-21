@@ -51,11 +51,11 @@ $(document).ready(function()
 
 			$('#date-end').bootstrapMaterialDatePicker
 			({
-				weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+				weekStart: 0, format: 'YYYY-MM-DD',time: false,
 			});
 			$('#date-start').bootstrapMaterialDatePicker
 			({
-				weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+				weekStart: 0, format: 'YYYY-MM-DD',time: false,
 			}).on('change', function(e, date)
 			{
 				$('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
