@@ -202,6 +202,31 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item {{ (Request::is('reports*')) ? 'active' : '' }}">
+                            <a href="#" class="nav-link nav-toggle"> <i class="material-icons">view_module</i>
+                                <span class="title">التقارير</span> <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item {{ (Request::is('reports/sales')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('reports/sales') }}" class="nav-link "> <span class="title">تقارير المبيعات</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {{ (Request::is('reports/purchases')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('reports/purchases') }}" class="nav-link "> <span class="title">تقارير المشتريات  </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {{ (Request::is('reports/expenses')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('reports/expenses') }}" class="nav-link "> <span class="title">تقارير المصروفات  </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {{ (Request::is('reports/cash')) ? 'active' : '' }}">
+                                    <a href="{{ URL::to('reports/cash') }}" class="nav-link "> <span class="title">تقارير النقدية  </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -261,7 +286,7 @@
     <!-- start footer -->
     <div class="page-footer">
         <div class="page-footer-inner"> 2019 &copy; Dokkan
-            <a href="https://xative.com" target="_top" class="makerCss">Xative</a>
+            <a href="https://ovisioneg.com" target="_top" class="makerCss">OVISION</a>
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>

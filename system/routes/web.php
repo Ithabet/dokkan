@@ -93,3 +93,19 @@ Route::get('deposits/delete/{id}', 'DepositsController@destroy');
 Route::get('poss/', 'PossController@index');
 Route::get('poss/new', 'PossController@newPos');
 Route::post('poss/new', 'PossController@savePos');
+
+Route::group(['prefix' => 'reports'], function() {
+
+    Route::get('sales','ReportController@sales');
+    Route::post('sales','ReportController@sales');
+    Route::get('purchases','ReportController@purchases');
+    Route::post('purchases','ReportController@purchases');
+    Route::get('expenses','ReportController@expenses');
+    Route::post('expenses','ReportController@expenses');
+    Route::get('cash','ReportController@cash');
+    Route::post('cash','ReportController@cash');
+
+
+
+});
+
