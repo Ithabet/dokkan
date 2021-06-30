@@ -26,14 +26,15 @@
                         <tbody>
                         @foreach($categories as $category)
                         <tr>
-                            <td><a href="{{ URL::to('products/category/'.$category->id) }}">{{ $category->name }}</a></td>
+{{--                            <td><a href="{{ URL::to('products/category/'.$category->id) }}">{{ $category->name }}</a></td>--}}
+                            <td><a href="#">{{ $category->name }}</a></td>
                             <td>function collect number of products</td>
                             <td>function collect sum of sells</td>
                             <td>
-                                <a href="{{ URL::to('products/category/edit/'.$category->id) }}" class="btn btn-primary btn-xs">
+                                <a href="{{ URL::to('products/categories/edit/'.$category->id) }}" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="{{ URL::to('products/category/delete/'.$category->id) }}" class="btn btn-danger btn-xs">
+                                <a href="{{ URL::to('products/categories/delete/'.$category->id) }}" onclick="return confirm('هل تريد الحذف ؟')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash-o "></i>
                                 </a>
                             </td>
@@ -44,27 +45,52 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="card card-box">
-                <div class="card-head">
-                    <header>تصنيف جديد</header>
-                </div>
-                <form action="{{ URL::to('products/categories/new') }}" method="post">
-                    {{ csrf_field() }}
-                <div class="card-body row">
-                    <div class="col-lg-12 p-t-20">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="name" autofocus type="text" id="txtFirstName">
-                            <label class="mdl-textfield__label">اسم التصنيف</label>
+        @if(isset($edit))
+            <div class="col-sm-4">
+                <div class="card card-box">
+                    <div class="card-head">
+                        <header>تعديل التصنيف </header>
+                    </div>
+                    <form action="{{ URL::to('products/categories/update/'.$editcategory->id) }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="card-body row">
+                            <div class="col-lg-12 p-t-20">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                    <input class="mdl-textfield__input" name="name" value="{{ $editcategory->name }}" autofocus type="text" id="txtFirstName">
+                                    <label class="mdl-textfield__label">اسم التصنيف</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20 text-center">
+                                <button type="submit" class="btn btn-lg btn-success pull-left">حفظ</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12 p-t-20 text-center">
-                        <button type="submit" class="btn btn-lg btn-success pull-left">حفظ</button>
-                    </div>
+                    </form>
                 </div>
-                </form>
             </div>
-        </div>
+        @else
+            <div class="col-sm-4">
+                <div class="card card-box">
+                    <div class="card-head">
+                        <header>تصنيف جديد</header>
+                    </div>
+                    <form action="{{ URL::to('products/categories/new') }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="card-body row">
+                            <div class="col-lg-12 p-t-20">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                    <input class="mdl-textfield__input" name="name" autofocus type="text" id="txtFirstName">
+                                    <label class="mdl-textfield__label">اسم التصنيف</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20 text-center">
+                                <button type="submit" class="btn btn-lg btn-success pull-left">حفظ</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
+
     </div>
 
 @stop

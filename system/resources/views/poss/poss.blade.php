@@ -25,14 +25,15 @@
                         <tbody>
                         @foreach($poss as $pos)
                             <tr>
-                                <td><a href="{{ URL::to('poss/'.$pos->id) }}">{{ $pos->name }}</a></td>
+{{--                                <td><a href="{{ URL::to('poss/'.$pos->id) }}">{{ $pos->name }}</a></td>--}}
+                                <td><a href="#">{{ $pos->name }}</a></td>
                                 <td>{{ $pos->address }}</td>
                                 <td>make function to collect sells</td>
                                 <td>
                                     <a href="{{ URL::to('poss/edit/'.$pos->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="{{ URL::to('poss/delete/'.$pos->id) }}" class="btn btn-danger btn-xs">
+                                    <a href="{{ URL::to('poss/delete/'.$pos->id) }}" onclick="return confirm('هل انت متاكد من الحذف ؟')" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
                                     </a>
                                 </td>

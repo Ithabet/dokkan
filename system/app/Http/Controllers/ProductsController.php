@@ -33,13 +33,16 @@ class ProductsController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->save();
+        $request->session()->flash('successmessage', 'تم ضافة  التصنيف بنجاح ');
         return redirect('products/categories');
 
     }
+
     public function newProduct(){
         $categories = Category::all();
         return view('products.newProduct',compact('categories'));
     }
+
     public function saveProduct(Request $request){
         $rules = [
             'name'      => 'required',
@@ -62,8 +65,10 @@ class ProductsController extends Controller
         $product->quantity          = $request->quantity;
         $product->alert_quantity    = $request->alert_quantity;
         $product->save();
+        $request->session()->flash('successmessage', 'تم ضافة  المنتج بنجاح ');
         return redirect('products/new');
     }
+
     public function jsonsearch(Request $request)
     {
         $products = Product::select(['id','code','purchase_price as price','sell_price','name as value'])->where('code','like','%'.$request->keywords.'%')
@@ -71,6 +76,7 @@ class ProductsController extends Controller
         return response()->json($products);
 
     }
+
     public function getAjaxProducts(Request $request){   
 
         if($request->category){
@@ -91,5 +97,38 @@ class ProductsController extends Controller
             ->where('type','=','m')->paginate($request->number_per_page);
         return response()->json($products);
     }
+
+    public function editCategory($id)
+    {
+        $categories = Category::all();
+        $editcategory = Category::find($id);
+        $edit=true;
+        return view('products.newCategory',compact('categories','editcategory','edit'));
+    }
+
+    public function updateCategory(Request $request,$id)
+    {
+        $rules = [
+            'name'  => 'required'
+        ];
+        $messages = [
+            'name.required'     => 'يجب اضافة اسم التصنيف'
+        ];
+        $this->validate($request,$rules,$messages);
+
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+        $request->session()->flash('successmessage', 'تم تعديل التصنيف بنجاح ');
+        return redirect('products/categories');
+    }
+
+    public function  deleteCategory($id)
+    {
+        $category = Category::find($id)->delete();
+        session()->flash('successmessage', 'تم حذف التصنيف بنجاح ');
+        return redirect('products/categories');
+    }
+
 
 }

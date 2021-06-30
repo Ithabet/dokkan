@@ -49,6 +49,9 @@ Route::post('products/getAjaxPProducts', 'ProductsController@getAjaxPProducts');
 
 Route::get('products/categories', 'ProductsController@newCategory');
 Route::post('products/categories/new', 'ProductsController@saveCategory');
+Route::get('products/categories/edit/{id}', 'ProductsController@editCategory');
+Route::post('products/categories/update/{id}', 'ProductsController@updateCategory');
+Route::get('products/categories/delete/{id}', 'ProductsController@deleteCategory');
 Route::get('products/new', 'ProductsController@newProduct');
 Route::post('products/new', 'ProductsController@saveProduct');
 
@@ -93,6 +96,9 @@ Route::get('deposits/delete/{id}', 'DepositsController@destroy');
 Route::get('poss/', 'PossController@index');
 Route::get('poss/new', 'PossController@newPos');
 Route::post('poss/new', 'PossController@savePos');
+Route::get('poss/edit/{id}', 'PossController@edit');
+Route::post('poss/update/{id}', 'PossController@update');
+Route::get('poss/delete/{id}', 'PossController@destroy');
 
 Route::group(['prefix' => 'reports'], function() {
 
