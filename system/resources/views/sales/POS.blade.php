@@ -29,7 +29,7 @@
                                     <div class="col-sm-12"><label>اسم العميل</label></div>
                                     <div class="col-sm-12">
                                             <select id="CustomerID" name="customer_id" class="form-control  select2">
-                                                <option value="0">عميل افتراضي</option>
+{{--                                                <option value="0">عميل افتراضي</option>--}}
                                                 @foreach($customers as $customer)
                                                 <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                 @endforeach
@@ -48,14 +48,14 @@
                             <div class="col-sm-4">
                                 <select id="orderType" class="form-control  select2">
                                     <option value="0">صالة</option>
-                                    <option value="1">تيك اواي</option>
+{{--                                    <option value="1">تيك اواي</option>--}}
                                     <option value="2">ديليفري</option>
                                 </select>
-                                <select id="TableID" class="form-control  select2">
-                                    <option value="0">-- رقم الطاولة --</option>
-                                    <option value="1">طاولة 1</option>
-                                    <option value="2">طاولة 2</option>
-                                </select>
+{{--                                <select id="TableID" class="form-control  select2">--}}
+{{--                                    <option value="0">-- رقم الطاولة --</option>--}}
+{{--                                    <option value="1">طاولة 1</option>--}}
+{{--                                    <option value="2">طاولة 2</option>--}}
+{{--                                </select>--}}
                             </div>
 
                         </div>
@@ -63,14 +63,15 @@
                         <div class="row">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-12">
                                         المنتج / باركود
                                         <input type="text" dir="rtl" class="form-control" id="products">
                                         <input type="hidden" id="selected_product_id" value="">
                                         <input type="hidden" id="selected_product_price" value="">
+                                        <input type="hidden" id="selected_product_name" value="">
 
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" hidden>
                                         الكمية
                                         <div class="input-group spinner">
                                             <span class="input-group-btn">
@@ -86,7 +87,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3" hidden>
                                         أضف الى القائمة
                                         <div class="input-group">
                                             <button type="button" id="addToListBtn" class="btn btn-block btn-success">
@@ -227,8 +228,8 @@
                                         <tr>
                                             <td>نوع الطلب</td>
                                             <td id="final_receipt_type"></td>
-                                            <td>رقم الطاولة</td>
-                                            <td id="final_receipt_table_number"></td>
+{{--                                            <td>رقم الطاولة</td>--}}
+{{--                                            <td id="final_receipt_table_number"></td>--}}
                                         </tr>
                                     </table>
                                     <table class="table table-striped" hidden>
@@ -477,12 +478,30 @@
                         }
                     } );
                 },
-                minLength: 2,
-                select: function( event, ui ) {
+                minLength: 4,
+                autoFocus:true,
+                focus: function( event, ui ) {
                     $('#selected_product_id').val(ui.item.id);
                     $('#selected_product_price').val(ui.item.sell_price);
+                    $('#selected_product_name').val(ui.item.value);
+
+                    var newProductId = $('#selected_product_id').val();
+                    console.log($(this));
+                    var newProductName = $('#selected_product_name').val();
+                    var price = parseFloat($('#selected_product_price').val());
+                    var quantity = parseInt($('#selected_product_quantity').val());
+                    newProduct(newProductId,newProductName,price,quantity);
+                    $('#selected_product_quantity').val(1)
+                    $(this).val('');
+                    $('.ui-widget-content').hide();
+                    return false;
                 }
+
             } );
+            $('#products').keypress(function(event) {
+                event.preventDefault();
+                return false;
+            });
             function checkProduct(productId){
                 var newProductId = $('#selected_product_id').val();
                 return productId == newProductId;
