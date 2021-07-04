@@ -111,6 +111,9 @@
                                 <span></span>
                             </div>
                         </li>
+                        @php
+                            $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+                        @endphp
                         <li class="nav-item start {{ (Request::is('home*')) ? 'active open' : '' }}">
                             <a href="{{ URL::to('/') }}" class="nav-link nav-toggle">
                                 <span class="title">  الرئيسية</span>
@@ -118,29 +121,36 @@
                                 <span class="selected"></span>
                             </a>
                         </li>
+                        @if(in_array('customers',$roles)||in_array('users',$roles))
                         <li class="nav-item {{ (Request::is('persons/*')) ? 'active open' : '' }}">
                             <a href="#" class="nav-link nav-toggle"> <i class="material-icons">person</i>
                                 <span class="title">الأشخاص</span>
                                 <span class="arrow {{ (Request::is('persons/*')) ? 'open' : '' }}"></span>
                             </a>
                             <ul class="sub-menu">
+                                @if(in_array('customers',$roles))
                                 <li class="nav-item {{ (Request::is('persons/customer*')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('persons/customers') }}" class="nav-link ">
                                         <span class="title">العملاء</span>
                                     </a>
                                 </li>
-                                <li class="nav-item {{ (Request::is('persons/suppliers*')) ? 'active' : '' }}">
-                                    <a href="{{ URL::to('persons/suppliers') }}" class="nav-link ">
-                                        <span class="title">الموردين</span>
-                                    </a>
-                                </li>
+                                @endif
+{{--                                <li class="nav-item {{ (Request::is('persons/suppliers*')) ? 'active' : '' }}">--}}
+{{--                                    <a href="{{ URL::to('persons/suppliers') }}" class="nav-link ">--}}
+{{--                                        <span class="title">الموردين</span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+                                @if(in_array('users',$roles))
                                 <li class="nav-item {{ (Request::is('persons/users*')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('persons/users') }}" class="nav-link "> <span
                                                 class="title">المستخدمين</span>
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
+                        @endif
+                        @if(in_array('poss',$roles))
                         <li class="nav-item  {{ (Request::is('poss*')) ? 'active' : '' }} ">
                             <a href="{{ URL::to('poss') }}" class="nav-link nav-toggle">
                                 <span class="title">نقاط البيع</span>
@@ -148,29 +158,37 @@
                                 <span class="selected"></span>
                             </a>
                         </li>
+                        @endif
+                        @if(in_array('categories',$roles)||in_array('products',$roles))
                         <li class="nav-item {{ (Request::is('products*')) ? 'active' : '' }}">
                             <a href="#" class="nav-link nav-toggle"> <i class="material-icons">view_module</i>
                                 <span class="title">المنتجات</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
+                                @if(in_array('categories',$roles))
                                 <li class="nav-item {{ (Request::is('products/categories*')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('products/categories') }}" class="nav-link "> <span class="title">التصنيفات</span>
                                     </a>
                                 </li>
+                                @endif
+                                @if(in_array('products',$roles))
                                 <li class="nav-item {{ (Request::is('products')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('products') }}" class="nav-link "> <span class="title">المنتجات</span>
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
-                        <li class="nav-item {{ (Request::is('purchases*')) ? 'active' : '' }} ">
-                            <a href="{{ URL::to('purchases/') }}" class="nav-link nav-toggle">
-                                <span class="title">المشتريات</span>
-                                <i class="material-icons">toc</i>
-                                <span class="selected"></span>
-                                <span class="arrow"></span>
-                            </a>
-                        </li>
+                        @endif
+{{--                        <li class="nav-item {{ (Request::is('purchases*')) ? 'active' : '' }} ">--}}
+{{--                            <a href="{{ URL::to('purchases/') }}" class="nav-link nav-toggle">--}}
+{{--                                <span class="title">المشتريات</span>--}}
+{{--                                <i class="material-icons">toc</i>--}}
+{{--                                <span class="selected"></span>--}}
+{{--                                <span class="arrow"></span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+                        @if(in_array('pos',$roles))
                         <li class="nav-item {{ (Request::is('sales*')) ? 'active' : '' }} ">
                             <a href="{{ URL::to('sales/') }}" class="nav-link nav-toggle">
                                 <span class="title">المبيعات</span>
@@ -179,6 +197,8 @@
                                 <span class="arrow "></span>
                             </a>
                         </li>
+                        @endif
+                        @if(in_array('expenses',$roles))
                         <li class="nav-item {{ (Request::is('expenses*')) ? 'active' : '' }} ">
                             <a href="{{ URL::to('expenses/') }}" class="nav-link nav-toggle">
                                 <span class="title">المصروفات</span>
@@ -187,46 +207,60 @@
                                 <span class="arrow "></span>
                             </a>
                         </li>
+                        @endif
+                        @if(in_array('withdrawals',$roles)||in_array('deposits',$roles))
                         <li class="nav-item {{ (Request::is('withdrawals*') || Request::is('deposits*')) ? 'active' : '' }}">
                             <a href="#" class="nav-link nav-toggle"> <i class="material-icons">view_module</i>
                                 <span class="title">التعاملات النقدية</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
+                                @if(in_array('withdrawals',$roles))
                                 <li class="nav-item {{ (Request::is('withdrawals*')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('withdrawals') }}" class="nav-link "> <span class="title">سحب</span>
                                     </a>
                                 </li>
+                                @endif
+                                @if(in_array('deposits',$roles))
                                 <li class="nav-item {{ (Request::is('deposits*')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('deposits') }}" class="nav-link "> <span class="title">إيداع</span>
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
-
+                        @endif
+                        @if(in_array('reports-sales',$roles)||in_array('reports-expenses',$roles)||in_array('reports-cash',$roles))
                         <li class="nav-item {{ (Request::is('reports*')) ? 'active' : '' }}">
                             <a href="#" class="nav-link nav-toggle"> <i class="material-icons">view_module</i>
                                 <span class="title">التقارير</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
+                                @if(in_array('reports-sales',$roles))
                                 <li class="nav-item {{ (Request::is('reports/sales')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('reports/sales') }}" class="nav-link "> <span class="title">تقارير المبيعات</span>
                                     </a>
                                 </li>
-                                <li class="nav-item {{ (Request::is('reports/purchases')) ? 'active' : '' }}">
-                                    <a href="{{ URL::to('reports/purchases') }}" class="nav-link "> <span class="title">تقارير المشتريات  </span>
-                                    </a>
-                                </li>
+                                @endif
+{{--                                <li class="nav-item {{ (Request::is('reports/purchases')) ? 'active' : '' }}">--}}
+{{--                                    <a href="{{ URL::to('reports/purchases') }}" class="nav-link "> <span class="title">تقارير المشتريات  </span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+                                    @if(in_array('reports-expenses',$roles))
                                 <li class="nav-item {{ (Request::is('reports/expenses')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('reports/expenses') }}" class="nav-link "> <span class="title">تقارير المصروفات  </span>
                                     </a>
                                 </li>
+                                    @endif
+                                        @if(in_array('reports-cash',$roles))
                                 <li class="nav-item {{ (Request::is('reports/cash')) ? 'active' : '' }}">
                                     <a href="{{ URL::to('reports/cash') }}" class="nav-link "> <span class="title">تقارير النقدية  </span>
                                     </a>
                                 </li>
+                                    @endif
 
                             </ul>
                         </li>
+                            @endif
                     </ul>
                 </div>
             </div>

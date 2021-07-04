@@ -34,7 +34,7 @@ class CustomersController extends Controller
         $messages = [
             'name.required'     => 'يجب اضافة اسم العميل',
             'phone.required'    =>'يجب اضافة هاتف العميل',
-            'credit.required'   =>'يجب ملئ خانة الرصيد ( 0 القيمة الافتراضية )'
+            'credit.required'   =>' يجب ملئ خانة الرصيد ( 0 القيمة الافتراضية)'
         ];
         $this->validate($request,$rules,$messages);
         $customer = new Customer();

@@ -20,28 +20,30 @@
                             <th>إسم الدخول</th>
                             <th>رقم الهاتف</th>
                             <th>الصلاحيات</th>
-                            <th>اجمالي المبيعات</th>
                             <th>خيارات</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a href="{{ URL::to('persons/user/') }}">احمد متولي عبدالمنعم</a></td>
-                                <td>ahmedmet</td>
-                                <td>01201201201</td>
-                                <td>
-                                    <span class="label label-danger">مشرف عام </span>
-                                </td>
-                                <td>22550</td>
-                                <td>
-                                    <a href="edit_professor.html" class="btn btn-primary btn-xs">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <button class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach($users as $user)
+                                <tr>
+                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone }}</td>
+                                    <td>
+                                        @foreach(json_decode($user->role) as $role)
+                                        <span class="label label-info">{{ __($role) }}</span>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('persons/users/edit/'.$user->id) }}" class="btn btn-primary btn-xs">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a href="{{ url('persons/users/delete/'.$user->id) }}" onclick="confirm('هل انت متأكد من حذف المستخدم ؟')" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

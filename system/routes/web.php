@@ -27,6 +27,8 @@ Route::post('persons/customers/new', 'CustomersController@saveCustomer');
 Route::get('persons/customers/edit/{id}', 'CustomersController@edit');
 Route::post('persons/customers/update/{id}', 'CustomersController@update');
 Route::get('persons/customers/delete/{id}', 'CustomersController@destroy');
+Route::post('persons/customers/customerjsonsearch', 'ProductsController@customerJsonSearch');
+
 
 
 
@@ -43,6 +45,9 @@ Route::get('persons/suppliers/delete/{id}', 'SuppliersController@destroy');
 
 
 Route::get('products/', 'ProductsController@index');
+Route::get('products/edit/{id}', 'ProductsController@editProduct');
+Route::post('products/update/{id}', 'ProductsController@updateProduct');
+Route::get('products/delete/{id}', 'ProductsController@deleteProduct');
 Route::post('products/JSON-search', 'ProductsController@jsonsearch');
 Route::post('products/getAjaxProducts', 'ProductsController@getAjaxProducts');
 Route::post('products/getAjaxPProducts', 'ProductsController@getAjaxPProducts');
@@ -65,12 +70,18 @@ Route::get('purchase/print/receipt/{purchase}', 'PurchasesController@receipt');
 Route::get('sales/', 'salesController@index');
 Route::get('sales/pos', 'salesController@pos');
 Route::post('sales/new', 'salesController@saveSales');
+Route::get('sales/edit/{id}', 'salesController@editSale');
+Route::get('sales/delete/{id}', 'salesController@deleteSale');
+Route::post('sales/update/{id}', 'salesController@updateSales');
 Route::get('sales/print/receipt/{sale}', 'salesController@receipt');
 
 
 Route::get('persons/users', 'UsersController@index');
 Route::get('persons/users/new', 'UsersController@newUser');
+Route::get('persons/users/edit/{id}', 'UsersController@editUser');
+Route::get('persons/users/delete/{id}', 'UsersController@deleteUser');
 Route::post('persons/users/new', 'UsersController@saveUser');
+Route::post('persons/users/save/{id}', 'UsersController@saveUser');
 
 Route::get('expenses/', 'expensesController@index');
 Route::post('expenses/new', 'expensesController@store');

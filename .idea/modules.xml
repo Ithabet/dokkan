@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/dokkan.iml" filepath="$PROJECT_DIR$/.idea/dokkan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../oqms_live/.idea/oqms_live.iml" filepath="$PROJECT_DIR$/../oqms_live/.idea/oqms_live.iml" />
     </modules>
   </component>
 </project>

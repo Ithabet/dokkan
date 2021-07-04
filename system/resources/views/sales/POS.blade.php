@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <div class="col-sm-12"><label>اسم العميل</label></div>
                                     <div class="col-sm-12">
-                                            <select id="CustomerID" name="customer_id" class="form-control  select2">
+                                            <select id="CustomerID" name="customer_id" onchange="get_customer_data(this)" class="form-control  select2">
 {{--                                                <option value="0">عميل افتراضي</option>--}}
                                                 @foreach($customers as $customer)
                                                 <option value="{{ $customer->id }}">{{ $customer->name }}</option>
@@ -231,6 +231,16 @@
 {{--                                            <td>رقم الطاولة</td>--}}
 {{--                                            <td id="final_receipt_table_number"></td>--}}
                                         </tr>
+                                        <tr>
+                                            <td>رقم الهاتف </td>
+                                            <td><input type="text" id="sale_phone" name="sale_phone" value="" class="form-control"></td>
+                                       </tr>
+                                        <tr>
+                                            <td>العنوان </td>
+                                            <td colspan="3">
+                                                <textarea name="sale_address" id="sale_address" class="form-control" ></textarea>
+                                            </td>
+                                        </tr>
                                     </table>
                                     <table class="table table-striped" hidden>
                                         <thead>
@@ -372,7 +382,7 @@
                 reCalculate();
             });
 
-            var init_number_per_page = 2;
+            var init_number_per_page = 15;
             var init_category = 0;
             $(document).on('click','.btn-pagination',function(){
                 var action = $(this).attr('data-url');
@@ -567,8 +577,26 @@
                 newProduct(newProductId,newProductName,price,quantity);
                 $('#selected_product_quantity').val(1)
             });
-        });
 
+
+
+        });
+        function get_customer_data(id)
+        {
+            var customer = id.value;
+            $.ajax( {
+                url: "{{ URL::to('persons/customers/customerjsonsearch') }}",
+                type: "post",
+                data: {
+                    id: customer
+                },
+                success: function( data ) {
+                    console.log(data.address);
+                    $('#sale_address').val(data.address);
+                    $('#sale_phone').val(data.phone);
+                }
+            } );
+        }
     </script>
 
 

@@ -31,7 +31,7 @@
                                 <td>{{ $customer->phone }}</td>
                                 <td>3</td>
                                 <td>1500</td>
-                                <td>{{ $customer->transactions()->latest('created_at')->first()->balance }}</td>
+                                <td>{{ (isset($customer->transactions()->latest('created_at')->first()->balance)) ? $customer->transactions()->latest('created_at')->first()->balance : 0  }}</td>
                                 <td>
                                     <a href="{{ url('persons/customers/edit/'.$customer->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>

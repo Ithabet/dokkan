@@ -52,7 +52,7 @@
                                                 <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
+                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" class="btn btn-danger btn-xs">
                                                     <i class="fa fa-trash-o "></i>
                                                 </a>
                                             </td>
@@ -89,7 +89,7 @@
                                                 <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
+                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" class="btn btn-danger btn-xs">
                                                     <i class="fa fa-trash-o "></i>
                                                 </a>
                                             </td>
@@ -124,7 +124,7 @@
                                                 <a href="{{ URL::to('products/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
+                                                <a href="{{ URL::to('products/delete/'.$product->id) }}" onclick="return confirm('هل انت متاكد من عملية الحذف ؟')" class="btn btn-danger btn-xs">
                                                     <i class="fa fa-trash-o "></i>
                                                 </a>
                                             </td>

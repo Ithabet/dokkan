@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @php
+        $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+    @endphp
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
@@ -53,12 +57,16 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="edit_professor.html" class="btn btn-primary btn-xs">
+                                    @if(in_array('editSale',$roles))
+                                    <a href="{{url('sales/edit/'.$sale->id)}}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger btn-xs">
+                                    @endif
+                                    @if(in_array('deleteSale',$roles))
+                                    <a href="{{url('sales/delete/'.$sale->id)}}" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
-                                    </button>
+                                    </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

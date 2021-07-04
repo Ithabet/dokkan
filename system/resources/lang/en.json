@@ -1,0 +1,16 @@
+{
+  "customers": "العملاء",
+  "users": "المستخدمين",
+  "poss": "نقاط البيع",
+  "categories": "التصنيفات",
+  "products": "المنتجات",
+  "pos": "بيع جديد",
+  "editSale":"تعديل المبيعات",
+  "deleteSale":"حذف المبيعات",
+  "expenses":"المصروفات",
+  "withdrawals": "سحب",
+  "deposits": "ايداع",
+  "reports-sales": "تقارير المبيعات",
+  "reports-expenses": "تقارير المصروفات",
+  "reports-cash": "تقارير النقدية"
+}

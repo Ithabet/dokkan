@@ -69,7 +69,7 @@
         <div class="col-md-6 col-sm-6">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>اجمالي الايرادات   </header>
+                    <header>اجمالي الايرادات</header>
                 </div>
                 <div class="card-body " id="bar-parent">
                     <div class="state-overview">
@@ -132,20 +132,8 @@
                     <div class="state-overview">
                         <div class="row">
 
-                            <div class="col-sm-4">
-                                <div class="overview-panel purple">
-                                    <div class="value white">
-                                        <p class="sbold addr-font-h3" data-counter="counterup" data-value="5">{{ $purchases->sum('paid') }}</p>
-                                        <p> اجمالي المشتريات </p>
-                                    </div>
-                                    <div class="symbol">
-                                        <i class="fa fa-file usr-clr"></i>
-                                    </div>
 
-                                </div>
-
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="overview-panel green">
                                     <div class="value white">
                                         <p class="sbold addr-font-h3" data-counter="counterup" data-value="5">{{ $expenses->sum('amount') }}</p>
@@ -158,7 +146,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="overview-panel orange">
                                     <div class="value white">
                                         <p class="sbold addr-font-h3" data-counter="counterup" data-value="5">{{ $withdrawals->sum('amount') }}</p>
@@ -174,7 +162,7 @@
                             <div class="col-sm-12">
                                 <div class="overview-panel blue">
                                     <div class="value white">
-                                        <p class="sbold addr-font-h3" data-counter="counterup" data-value="5">{{ $purchases->sum('paid')+$expenses->sum('amount')+$withdrawals->sum('amount') }}</p>
+                                        <p class="sbold addr-font-h3" data-counter="counterup" data-value="5">{{ $expenses->sum('amount')+$withdrawals->sum('amount') }}</p>
                                         <p> اجمالي النفقات </p>
                                     </div>
                                     <div class="symbol">
@@ -184,9 +172,6 @@
                                 </div>
 
                             </div>
-
-
-
 
                         </div>
                     </div>
@@ -312,66 +297,66 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6">
-            <div class="card card-box">
-                <div class="card-head">
-                    @if(isset($request->from) and isset($request->to))
-                        <header>  تقارير المشتريات  لفتره من {{ $request->from." الي ". $request->to }}    </header>
-                    @else
-                        <header>  تقارير المشتريات للشهر الحالي     </header>
-                    @endif
-                    {{--                    <div class="btn-group pull-left">--}}
-                    {{--                        <a href="#" class="btn btn-info">--}}
-                    {{--                            <i class="fa fa-plus"></i>         بحث بالشهر--}}
-                    {{--                        </a>--}}
-                    {{--                    </div>--}}
-                </div>
-                <div class="card-body " id="bar-parent">
-                    <table class="dataTable table table-hover table-striped" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>كود العملية</th>
-                            <th>نوع العمليه</th>
-                            <th>التاريخ</th>
-                            <th>اسم المورد</th>
-                            <th>قيمة العملية</th>
-                            <th>المدفوع</th>
-                            <th>المتبقي</th>
-                            <th>الحالة</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($purchases as $purchase)
-                            <tr>
-                                <td><a href="#">{{ $purchase->user_id }}#{{ $purchase->id }}</a></td>
+{{--        <div class="col-md-6 col-sm-6">--}}
+{{--            <div class="card card-box">--}}
+{{--                <div class="card-head">--}}
+{{--                    @if(isset($request->from) and isset($request->to))--}}
+{{--                        <header>  تقارير المشتريات  لفتره من {{ $request->from." الي ". $request->to }}    </header>--}}
+{{--                    @else--}}
+{{--                        <header>  تقارير المشتريات للشهر الحالي     </header>--}}
+{{--                    @endif--}}
+{{--                    --}}{{--                    <div class="btn-group pull-left">--}}
+{{--                    --}}{{--                        <a href="#" class="btn btn-info">--}}
+{{--                    --}}{{--                            <i class="fa fa-plus"></i>         بحث بالشهر--}}
+{{--                    --}}{{--                        </a>--}}
+{{--                    --}}{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="card-body " id="bar-parent">--}}
+{{--                    <table class="dataTable table table-hover table-striped" style="width:100%">--}}
+{{--                        <thead>--}}
+{{--                        <tr>--}}
+{{--                            <th>كود العملية</th>--}}
+{{--                            <th>نوع العمليه</th>--}}
+{{--                            <th>التاريخ</th>--}}
+{{--                            <th>اسم المورد</th>--}}
+{{--                            <th>قيمة العملية</th>--}}
+{{--                            <th>المدفوع</th>--}}
+{{--                            <th>المتبقي</th>--}}
+{{--                            <th>الحالة</th>--}}
+{{--                        </tr>--}}
+{{--                        </thead>--}}
+{{--                        <tbody>--}}
+{{--                        @foreach($purchases as $purchase)--}}
+{{--                            <tr>--}}
+{{--                                <td><a href="#">{{ $purchase->user_id }}#{{ $purchase->id }}</a></td>--}}
 
-                                <td>{{ $purchase->created_at->format('Y-m-d') }}</td>
-                                <td>{{ $purchase->supplier->name }}</td>
-                                <td>{{ $purchase->total }}</td>
-                                <td>{{ $purchase->paid }}</td>
-                                <td>{{ $purchase->total - $purchase->paid }}</td>
-                                <td>
-                                    @if($purchase->status)
-                                        <label class="label label-rouded label-success">مدفوع</label>
-                                    @else
-                                        <label class="label label-rouded label-warning">غير مدفوع</label>
-                                    @endif
-                                </td>
+{{--                                <td>{{ $purchase->created_at->format('Y-m-d') }}</td>--}}
+{{--                                <td>{{ $purchase->supplier->name }}</td>--}}
+{{--                                <td>{{ $purchase->total }}</td>--}}
+{{--                                <td>{{ $purchase->paid }}</td>--}}
+{{--                                <td>{{ $purchase->total - $purchase->paid }}</td>--}}
+{{--                                <td>--}}
+{{--                                    @if($purchase->status)--}}
+{{--                                        <label class="label label-rouded label-success">مدفوع</label>--}}
+{{--                                    @else--}}
+{{--                                        <label class="label label-rouded label-warning">غير مدفوع</label>--}}
+{{--                                    @endif--}}
+{{--                                </td>--}}
 
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th colspan="5"> <b>اجمالي المشتريات</b></th>
-                            <th><b>{{ $purchases->sum('paid') }}</b></th>
-                        </tr>
-                        </tfoot>
+{{--                            </tr>--}}
+{{--                        @endforeach--}}
+{{--                        </tbody>--}}
+{{--                        <tfoot>--}}
+{{--                        <tr>--}}
+{{--                            <th colspan="5"> <b>اجمالي المشتريات</b></th>--}}
+{{--                            <th><b>{{ $purchases->sum('paid') }}</b></th>--}}
+{{--                        </tr>--}}
+{{--                        </tfoot>--}}
 
-                    </table>
-                </div>
-            </div>
-        </div>
+{{--                    </table>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
 
         <div class="col-md-6 col-sm-6">
