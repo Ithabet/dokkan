@@ -28,7 +28,19 @@
                             <label class="mdl-textfield__label">رقم الهاتف</label>
                         </div>
                     </div>
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <textarea class="form-control" name="address">{{ $customer->address }}</textarea>
+                            <label class="mdl-textfield__label">العنوان</label>
+                        </div>
+                    </div>
 
+                    <div class="col-lg-6 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="credit" value="{{ $customer->balance }}" type="text" id="txtFirstName">
+                            <label class="mdl-textfield__label">الرصيد</label>
+                        </div>
+                    </div>
                     <div class="col-lg-12 p-t-20 text-center">
                         <button type="submit" class="btn btn-lg btn-success pull-left">حفظ</button>
                     </div>

@@ -29,9 +29,9 @@
                             <tr>
                                 <td><a href="{{ URL::to('persons/customer/'.$customer->id) }}">{{ $customer->name }}</a></td>
                                 <td>{{ $customer->phone }}</td>
-                                <td>3</td>
-                                <td>1500</td>
-                                <td>{{ (isset($customer->transactions()->latest('created_at')->first()->balance)) ? $customer->transactions()->latest('created_at')->first()->balance : 0  }}</td>
+                                <td>{{ $customer->sales->count() }}</td>
+                                <td>{{ $customer->sales->sum('total') }}</td>
+                                <td>{{ $customer->sales->sum('total')-$customer->sales->sum('paid')+$customer->balance }}</td>
                                 <td>
                                     <a href="{{ url('persons/customers/edit/'.$customer->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>

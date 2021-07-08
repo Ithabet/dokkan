@@ -179,7 +179,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
                     @if(isset($request->from) and isset($request->to))
@@ -238,8 +238,14 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="5"> <b>اجمالي المبيعات</b></th>
+                                <th > <b>اجمالي المبيعات</b></th>
                                 <th><b>{{ $sales->sum('paid') }}</b></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </tfoot>
 
@@ -247,7 +253,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
                     @if(isset($request->from) and isset($request->to))
@@ -290,6 +296,8 @@
                         <tr>
                             <th > <b>اجمالي الايداعات</b></th>
                             <th><b>{{ $deposits->sum('amount') }}</b></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>
@@ -359,7 +367,7 @@
 {{--        </div>--}}
 
 
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
                     @if(isset($request->from) and isset($request->to))
@@ -400,8 +408,10 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th colspan="3">اجمالي المصروفات </th>
-                            <th>{{ $expenses->sum('amount') }}</th>
+                            <th><b>اجمالي المصروفات </b></th>
+                            <th></th>
+                            <th></th>
+                            <th><b>{{ $expenses->sum('amount') }}</b></th>
                         </tr>
                         </tfoot>
                     </table>
@@ -409,7 +419,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
                     @if(isset($request->from) and isset($request->to))
@@ -450,8 +460,11 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th colspan="3">اجمالي المسحوبات </th>
-                            <th>{{ $withdrawals->sum('amount') }}</th>
+                            <th ><b>اجمالي المسحوبات </b></th>
+                            <th><b>{{ $withdrawals->sum('amount') }}</b></th>
+                            <th></th>
+                            <th></th>
+
                         </tr>
                         </tfoot>
                     </table>

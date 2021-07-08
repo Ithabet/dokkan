@@ -40,14 +40,16 @@ class CustomersController extends Controller
         $customer = new Customer();
         $customer->name     = $request->name;
         $customer->phone    = $request->phone;
+        $customer->balance  = $request->credit;
+        $customer->address  = $request->address;
         $customer->save();
         //// Opening Transaction ////
-        $transaction = new Transaction();
-        $transaction->balance = $request->credit;
-        $transaction->amount  = 0;
-        $transaction->trans_type  = 'opening';
-        $transaction->customer_id = $customer->id;
-        $transaction->save();
+//        $transaction = new Transaction();
+//        $transaction->balance = $request->credit;
+//        $transaction->amount  = 0;
+//        $transaction->trans_type  = 'opening';
+//        $transaction->customer_id = $customer->id;
+//        $transaction->save();
 
         return redirect('persons/customers');
     }
@@ -71,6 +73,8 @@ class CustomersController extends Controller
         $customer = Customer::find($id);
         $customer->name     = $request->name;
         $customer->phone    = $request->phone;
+        $customer->balance  = $request->credit;
+        $customer->address  = $request->address;
         $customer->save();
         $request->session()->flash('successmessage', 'تم تعديل بيانات العميل بنجاح ');
         return redirect('/persons/customers');

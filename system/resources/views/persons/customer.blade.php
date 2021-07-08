@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+    @endphp
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
@@ -13,7 +16,7 @@
                             <div class="col-lg-3 col-sm-6">
                                 <div class="overview-panel purple">
                                     <div class="value white">
-                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="3">3</p>
+                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $customer->sales->count() }}">{{ $customer->sales->count() }}</p>
                                         <p>عملية بيع</p>
                                     </div>
                                     <div class="symbol">
@@ -28,8 +31,8 @@
                                         <i class="fa fa-money"></i>
                                     </div>
                                     <div class="value white">
-                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="3421">3421</p>
-                                        <p>اجمالي المبيعات</p>
+                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $customer->sales->sum('total') }}">{{ $customer->sales->sum('total') }}</p>
+                                        <p>المبيعات</p>
                                     </div>
                                 </div>
                             </div>
@@ -39,19 +42,20 @@
                                         <i class="fa fa-money"></i>
                                     </div>
                                     <div class="value white">
-                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="0">0</p>
-                                        <p>make a function to calculate the due balance</p>
+                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $customer->sales->sum('paid') }}">{{ $customer->sales->sum('paid') }}</p>
+                                        <p>المدفوع</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="overview-panel orange">
                                     <div class="symbol">
-                                        <i class="fa fa-heartbeat"></i>
+                                        <i class="fa fa-money"></i>
                                     </div>
                                     <div class="value white">
-                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="14">14</p>
-                                        <p>TODAY'S OPT</p>
+                                        <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $customer->sales->sum('amount')-$customer->sales->sum('paid') }}">
+                                            {{ $customer->sales->sum('total')-$customer->sales->sum('paid') }}</p>
+                                        <p>المتبقي</p>
                                     </div>
                                 </div>
                             </div>
@@ -70,11 +74,13 @@
                     <header>المبيعات</header>
                 </div>
                 <div class="card-body " id="bar-parent">
-                    <table class="dataTable table table-hover table-striped" style="width:100%">
+                    <table class="table table-hover table-striped" style="width:100%">
                         <thead>
                         <tr>
                             <th>كود العملية</th>
+                            <th>نوع العمليه</th>
                             <th>التاريخ</th>
+                            <th>اسم العميل</th>
                             <th>قيمة العملية</th>
                             <th>المدفوع</th>
                             <th>المتبقي</th>
@@ -83,41 +89,51 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-
-                            <td><a href="{{ URL::to('sales/') }}">18458</a></td>
-                            <td>18/09/2019</td>
-                            <td>14520</td>
-                            <td>12000</td>
-                            <td>0</td>
-                            <td><label class="label label-rouded label-success">مدفوع</label></td>
-                            <td>
-                                <a href="edit_professor.html" class="btn btn-primary btn-xs">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <button class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash-o "></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td><a href="{{ URL::to('sales/') }}">18458</a></td>
-                            <td>18/09/2019</td>
-                            <td>14520</td>
-                            <td>12000</td>
-                            <td>2520</td>
-                            <td><label class="label label-rouded label-warning">غير مدفوع</label></td>
-                            <td>
-                                <a href="edit_professor.html" class="btn btn-primary btn-xs">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <button class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash-o "></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach($customer->sales as $sale)
+                            <tr>
+                                <td><a href="{{ URL::to('sales/') }}">{{ $sale->user_id }}#{{ $sale->id }}</a></td>
+                                <td>
+                                    @if($sale->order_type == 0)
+                                        <label class="label label-default">صالة</label>
+                                    @elseif($sale->order_type == 1)
+                                        <label class="label  label-info">نيك أواي</label>
+                                    @else
+                                        <label class="label  label-primary">ديليفري</label>
+                                    @endif
+                                </td>
+                                <td>{{ $sale->created_at->format('Y-m-d') }}</td>
+                                <td>{{ $sale->customer->name }}</td>
+                                <td>{{ $sale->total }}</td>
+                                <td>{{ $sale->paid }}</td>
+                                <td>{{ $sale->total - $sale->paid }}</td>
+                                <td>
+                                    @if($sale->status)
+                                        <label class="label label-rouded label-success">مدفوع</label>
+                                    @else
+                                        <label class="label label-rouded label-warning">غير مدفوع</label>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(in_array('editSale',$roles))
+                                        <a href="{{url('sales/edit/'.$sale->id)}}" class="btn btn-primary btn-xs">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    @endif
+                                    @if(in_array('deleteSale',$roles))
+                                        <a href="{{url('sales/delete/'.$sale->id)}}" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-trash-o "></i>
+                                        </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="9">
+                            </td>
+                        </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

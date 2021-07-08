@@ -8,7 +8,12 @@
 $(document).ready(function() {
 	'use strict';
 
-		    $('.dataTable').DataTable( );
+		    $('.dataTable').DataTable( {
+				dom: 'Bfrtip',
+				buttons: [
+					{ extend: 'print', text: '<i class="fa fa-print"></i>' }
+				]
+			});
 
 
 } );
