@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Setting;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Product;
@@ -19,7 +20,15 @@ class salesController extends Controller
     }
 
     public function index(){
-        $sales = Sales::orderByDesc('id')->paginate(25);
+        $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+        if(in_array('users',$roles))
+        {
+            $sales = Sales::orderByDesc('id')->paginate(25);
+        }
+        else {
+            $sales = Sales::where('pos_id',Auth::user()->pos_id)->orderByDesc('id')->paginate(25);
+        }
+
         return view('sales.sales',compact('sales'));
     }
     public function pos(){
@@ -31,6 +40,7 @@ class salesController extends Controller
     public function saveSales(Request $request){
         $sales = new Sales();
         $sales->user_id = Auth::user()->id;
+        $sales->pos_id = Auth::user()->pos_id;
         $sales->customer_id = $request->customer_id;
         $sales->order_type = $request->order_type;
         $sales->table_number = $request->table_number;
@@ -58,7 +68,13 @@ class salesController extends Controller
 
     }
     public function receipt(Sales $sale){
-        return view('sales.print',compact('sale'));
+        $settings_all = Setting::all();
+        $settings=[];
+        foreach ($settings_all as $setting)
+        {
+            $settings[$setting->name] = $setting->value;
+        }
+        return view('sales.print',compact('sale','settings'));
     }
 
     public function editSale($id)

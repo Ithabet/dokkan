@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../b2b/.idea/b2b.iml" filepath="$PROJECT_DIR$/../b2b/.idea/b2b.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/dokkan.iml" filepath="$PROJECT_DIR$/.idea/dokkan.iml" />
       <module fileurl="file://$PROJECT_DIR$/../oqms_live/.idea/oqms_live.iml" filepath="$PROJECT_DIR$/../oqms_live/.idea/oqms_live.iml" />
     </modules>

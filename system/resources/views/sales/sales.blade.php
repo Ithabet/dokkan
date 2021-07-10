@@ -34,7 +34,7 @@
                         <tbody>
                         @foreach($sales as $sale)
                             <tr>
-                                <td><a href="{{ URL::to('sales/') }}">{{ $sale->user_id }}#{{ $sale->id }}</a></td>
+                                <td><a target="_blank" href="{{ URL::to('sales/print/receipt/'.$sale->id) }}">{{ $sale->user_id }}#{{ $sale->id }}</a></td>
                                 <td>
                                     @if($sale->order_type == 0)
                                         <label class="label label-default">صالة</label>

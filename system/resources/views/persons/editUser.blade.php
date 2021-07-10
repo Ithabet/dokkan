@@ -77,6 +77,8 @@
                                     <option @if(in_array('reports-expenses',$roles)) selected  @endif value="reports-expenses">تقارير المبيعات</option>
                                     <option @if(in_array('reports-cash',$roles)) selected  @endif value="reports-cash">تقارير النقدية</option>
                                 </optgroup>
+                                <option @if(in_array('settings',$roles)) selected  @endif value="settings">الإعدادات</option>
+
                             </select>
 
                         </div>

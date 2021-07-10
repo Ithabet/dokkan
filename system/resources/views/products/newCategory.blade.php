@@ -19,7 +19,7 @@
                         <tr>
                             <th>اسم التصنيف</th>
                             <th>عدد المنتجات</th>
-                            <th>اجمالي المبيعات</th>
+{{--                            <th>اجمالي المبيعات</th>--}}
                             <th>خيارات</th>
                         </tr>
                         </thead>
@@ -28,8 +28,8 @@
                         <tr>
 {{--                            <td><a href="{{ URL::to('products/category/'.$category->id) }}">{{ $category->name }}</a></td>--}}
                             <td><a href="#">{{ $category->name }}</a></td>
-                            <td>function collect number of products</td>
-                            <td>function collect sum of sells</td>
+                            <td>{{ $category->products->count() }}</td>
+{{--                            <td>function collect sum of sells</td>--}}
                             <td>
                                 <a href="{{ URL::to('products/categories/edit/'.$category->id) }}" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i>

@@ -18,6 +18,7 @@
                         <tr>
                             <th>اسم النقطة</th>
                             <th>عنوان النقطة</th>
+                            <th>عدد  المبيعات</th>
                             <th>اجمالي المبيعات</th>
                             <th>خيارات</th>
                         </tr>
@@ -28,7 +29,8 @@
 {{--                                <td><a href="{{ URL::to('poss/'.$pos->id) }}">{{ $pos->name }}</a></td>--}}
                                 <td><a href="#">{{ $pos->name }}</a></td>
                                 <td>{{ $pos->address }}</td>
-                                <td>make function to collect sells</td>
+                                <td>{{ $pos->sales->count() }} </td>
+                                <td>{{ $pos->sales->sum('total') }} ج.م </td>
                                 <td>
                                     <a href="{{ URL::to('poss/edit/'.$pos->id) }}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-pencil"></i>

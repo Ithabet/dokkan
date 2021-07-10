@@ -15,7 +15,14 @@ class DepositsController extends Controller
      */
     public function index()
     {
-        $deposits= Deposit::all();
+        $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+        if(in_array('users',$roles))
+        {
+            $deposits= Deposit::where('pos_id',Auth::user()->pos_id)->orderByDesc('id')->get();
+        }
+        else {
+            $deposits= Deposit::orderByDesc('id')->get();
+        }
         return view('deposits/index',compact('deposits'));
     }
 
@@ -48,6 +55,7 @@ class DepositsController extends Controller
         }
 
         $deposit=new Deposit;
+        $deposit->pos_id = Auth::user()->pos_id;
         $deposit->name=$request->name;
         $deposit->amount=$request->amount;
         $deposit->date=$request->date;

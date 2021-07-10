@@ -54,6 +54,35 @@ class CustomersController extends Controller
         return redirect('persons/customers');
     }
 
+    public function saveCustomerAjax(Request $request){
+        $rules = [
+            'name'  => 'required',
+            'phone' => 'required',
+            'credit'=> 'required'
+        ];
+        $messages = [
+            'name.required'     => 'يجب اضافة اسم العميل',
+            'phone.required'    =>'يجب اضافة هاتف العميل',
+            'credit.required'   =>' يجب ملئ خانة الرصيد ( 0 القيمة الافتراضية)'
+        ];
+        $this->validate($request,$rules,$messages);
+        $customer = new Customer();
+        $customer->name     = $request->name;
+        $customer->phone    = $request->phone;
+        $customer->balance  = $request->credit;
+        $customer->address  = $request->address;
+        $customer->save();
+        //// Opening Transaction ////
+//        $transaction = new Transaction();
+//        $transaction->balance = $request->credit;
+//        $transaction->amount  = 0;
+//        $transaction->trans_type  = 'opening';
+//        $transaction->customer_id = $customer->id;
+//        $transaction->save();
+
+        return response()->json($customer);
+    }
+
     public function edit($id){
         $customer=Customer::find($id);
         return view('persons.editCustomer',compact('customer'));

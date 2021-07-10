@@ -24,6 +24,7 @@ Route::get('persons/customers', 'CustomersController@index');
 Route::get('persons/customer/{customer}', 'CustomersController@customer');
 Route::get('persons/customers/new', 'CustomersController@newCustomer');
 Route::post('persons/customers/new', 'CustomersController@saveCustomer');
+Route::post('persons/customers/newajax', 'CustomersController@saveCustomerAjax');
 Route::get('persons/customers/edit/{id}', 'CustomersController@edit');
 Route::post('persons/customers/update/{id}', 'CustomersController@update');
 Route::get('persons/customers/delete/{id}', 'CustomersController@destroy');
@@ -110,6 +111,10 @@ Route::post('poss/new', 'PossController@savePos');
 Route::get('poss/edit/{id}', 'PossController@edit');
 Route::post('poss/update/{id}', 'PossController@update');
 Route::get('poss/delete/{id}', 'PossController@destroy');
+
+
+Route::get('settings', 'SettingController@index');
+Route::post('settings', 'SettingController@update');
 
 Route::group(['prefix' => 'reports'], function() {
 

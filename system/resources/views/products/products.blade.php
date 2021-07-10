@@ -41,7 +41,7 @@
                                     <tbody>
                                     @foreach($products as $product)
                                         <tr>
-                                            <td><a href="{{ URL::to('product/'.$product->id) }}">{{ $product->name }}</a></td>
+                                            <td><a href="#">{{ $product->name }}</a></td>
                                             <td>{{ $product->category->name }}</td>
                                             <td>{{ $product->code }}</td>
                                             <td>{{ $product->sell_price }}</td>

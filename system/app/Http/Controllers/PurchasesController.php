@@ -17,7 +17,14 @@ class PurchasesController extends Controller
     }
 
     public function index(){
-        $purchases = Purchase::paginate(1);
+        $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+        if(in_array('users',$roles))
+        {
+            $purchases = Purchase::where('pos_id',Auth::user()->pos_id)->orderByDesc('id')->paginate(15);
+        }
+        else {
+            $purchases = Purchase::orderByDesc('id')->paginate(15);
+        }
         return view('purchases.purchases',compact('purchases'));
     }
     public function newPurchase(){
@@ -27,6 +34,7 @@ class PurchasesController extends Controller
     public function savePurchase(Request $request){
         $purchase = new Purchase();
         $purchase->user_id = Auth::user()->id;
+        $purchase->pos_id = Auth::user()->pos_id;
         $purchase->supplier_id = $request->supplier_id;
         $purchase->total = $request->total;
         $purchase->paid = $request->paid;

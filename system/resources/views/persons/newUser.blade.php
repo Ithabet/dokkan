@@ -74,6 +74,8 @@
                                         <option value="reports-expenses">تقارير المبيعات</option>
                                         <option value="reports-cash">تقارير النقدية</option>
                                     </optgroup>
+                                    <option value="settings">الإعدادات</option>
+
                                 </select>
 
                             </div>

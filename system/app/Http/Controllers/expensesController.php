@@ -16,7 +16,14 @@ class expensesController extends Controller
     }
 
     public function index(){
-        $expences=Expenses::All();
+        $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+        if(in_array('users',$roles))
+        {
+            $expences=Expenses::where('pos_id',Auth::user()->pos_id)->orderByDesc('id')->get();
+        }
+        else {
+            $expences=Expenses::orderByDesc('id')->get();
+        }
         return view('expenses.expenses',compact('expences'));
     }
 
@@ -33,6 +40,7 @@ class expensesController extends Controller
         }
 
         $expense=new Expenses;
+        $expense->pos_id = Auth::user()->pos_id;
         $expense->name=$request->name;
         $expense->paied_to=$request->paied_to;
         $expense->amount=$request->amount;

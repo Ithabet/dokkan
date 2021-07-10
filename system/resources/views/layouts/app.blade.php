@@ -261,6 +261,16 @@
                             </ul>
                         </li>
                             @endif
+
+                        @if(in_array('settings',$roles))
+                            <li class="nav-item  {{ (Request::is('settings')) ? 'active' : '' }} ">
+                                <a href="{{ URL::to('settings') }}" class="nav-link nav-toggle">
+                                    <span class="title">الإعدادات</span>
+                                    <i class="material-icons">settings</i>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

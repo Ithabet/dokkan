@@ -115,7 +115,7 @@ class ProductsController extends Controller
     public function jsonsearch(Request $request)
     {
         $products = Product::select(['id','code','purchase_price as price','sell_price','name as value'])->where('status',true)->where('code','like','%'.$request->keywords.'%')
-                        ->orWhere('name','like','%'.$request->keywords.'%')->where('status',true)->get();
+                        ->orWhere('name','like','%'.$request->keywords.'%')->where('status',true)->first();
         return response()->json($products);
 
     }

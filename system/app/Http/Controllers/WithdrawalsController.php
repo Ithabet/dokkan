@@ -20,7 +20,14 @@ class WithdrawalsController extends Controller
      */
     public function index()
     {
-        $withdrawals= Withdrawal::all();
+        $roles = (json_decode(auth()->user()->role))?json_decode(auth()->user()->role) :[];
+        if(in_array('users',$roles))
+        {
+            $withdrawals= Withdrawal::where('pos_id',Auth::user()->pos_id)->orderByDesc('id')->get();
+        }
+        else {
+            $withdrawals= Withdrawal::orderByDesc('id')->get();
+        }
         return view('withdrawals/index',compact('withdrawals'));
     }
 
@@ -53,6 +60,7 @@ class WithdrawalsController extends Controller
         }
 
         $withdrawal=new Withdrawal;
+        $withdrawal->pos_id = Auth::user()->pos_id;
         $withdrawal->name=$request->name;
         $withdrawal->amount=$request->amount;
         $withdrawal->date=$request->date;

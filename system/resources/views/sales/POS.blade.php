@@ -24,20 +24,20 @@
                 <form action="" method="post">
                     <div class="card-body " id="bar-parent">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                                 <div class="row">
-                                    <div class="col-sm-12"><label>اسم العميل</label></div>
+                                    <div class="col-sm-12"><label>اسم العميل</label><button type="button"  class="btn btn-info btn-sm pull-left " data-toggle="modal" data-target="#addNewCustomer" ><i class="fa fa-plus"></i></button></div>
                                     <div class="col-sm-12">
                                             <select id="CustomerID" name="customer_id" onchange="get_customer_data(this)" class="form-control  select2">
 {{--                                                <option value="0">عميل افتراضي</option>--}}
                                                 @foreach($customers as $customer)
-                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                <option value="{{ $customer->id }}">{{ $customer->name }}  -  {{ $customer->phone }}</option>
                                                 @endforeach
                                             </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="row">
                                     <div class="col-sm-12"><label>تاريخ العملية</label></div>
                                     <div class="col-sm-12">
@@ -46,6 +46,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
+                                <div class="col-sm-12"><label>نوع العملية </label></div>
                                 <select id="orderType" class="form-control  select2">
                                     <option value="0">صالة</option>
 {{--                                    <option value="1">تيك اواي</option>--}}
@@ -202,7 +203,7 @@
     <div class="modal fade" id="ConfirmSalePopUp" tabindex="-1" role="dialog" aria-labelledby="ConfirmSalePopUpTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                    <form action="{{ URL::to('sales/new') }}" method="post">
+                    <form action="{{ URL::to('sales/new') }}" method="post" id="confirm_sale">
                         {{ csrf_field() }}
                         <div class="modal-header">
                             <label id="ConfirmSalePopUpTitle">تـأكيد الفاتورة</label>
@@ -221,7 +222,7 @@
                                     <table class="table">
                                         <tr>
                                             <td>اسم العميل</td>
-                                            <td id="final_receipt_customer_name"></td>
+                                            <td id="final_receipt_customer_name"> عميل افتراضي </td>
                                             <td>تاريخ العملية</td>
                                             <td id="final_receipt_date"></td>
                                         </tr>
@@ -293,6 +294,45 @@
                 </div>
         </div>
     </div>
+    <div class="modal fade" id="addNewCustomer" tabindex="-1" role="dialog" aria-labelledby="ConfirmSalePopUpTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ URL::to('persons/customers/new') }}" id="newCustomerForm" method="post">
+                    {{ csrf_field() }}
+                    <div class="card-body row">
+                        <div class="col-lg-6 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" name="name" type="text" id="txtFirstName">
+                                <label class="mdl-textfield__label">اسم العميل</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" name="phone" type="text" id="txtFirstName">
+                                <label class="mdl-textfield__label">رقم الهاتف</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <textarea class="form-control" name="address"></textarea>
+                                <label class="mdl-textfield__label">العنوان</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" name="credit" value="0" type="text" id="txtFirstName">
+                                <label class="mdl-textfield__label">الرصيد</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button type="submit" class="btn btn-lg btn-success pull-left">حفظ</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+        </div>
+    </div>
 @stop
 
 @section('EXTJS')
@@ -351,7 +391,7 @@
                 var orderTypeID     = $('#orderType').val();
                 var orderType       = $('#orderType').children('option[value="'+orderTypeID+'"]').text();
                 var TableNumber     = $('#TableID').val();
-                $('#final_receipt_customer_name').html(customerName);
+                // $('#final_receipt_customer_name').html(customerName);
                 $('#final_receipt_date').html(receiptDate);
                 $('#final_receipt_type').html(orderType);
                 $('#final_receipt_table_number').html(TableNumber);
@@ -361,14 +401,14 @@
                 $('#f_receipt_date').val(receiptDate);
                 $('#f_receipt_type').val(orderTypeID);
                 $('#f_receipt_table_number').val(TableNumber);
-                $('#f_receipt_total').val(receipt_total);
-                $('#f_receipt_recent').text(receipt_total);
-                $('#auto_fill_paid').val(receipt_total);
-                $('#auto_fill_paid').html(receipt_total);
+                $('#f_receipt_total').val(receipt_total.toFixed(2));
+                $('#f_receipt_recent').text(receipt_total.toFixed(2));
+                $('#auto_fill_paid').val(receipt_total.toFixed(2));
+                $('#auto_fill_paid').html(receipt_total.toFixed(2));
             });
             $(document).on('click','#auto_fill_paid',function(){
-                var receipt_total = $(this).val();
-                $('#f_receipt_paid').val(receipt_total);
+                var receipt_total = parseFloat($(this).val());
+                $('#f_receipt_paid').val(receipt_total.toFixed(2));
                 $('#f_receipt_recent').text(0);
             });
             $(document).on('click','.remove',function () {
@@ -474,44 +514,82 @@
                        
                    load_products(keywords,init_number_per_page,category,'');
             });
-            $( "#products" ).autocomplete({
-                source: function( request, response ) {
+
+
+            {{--$( "#products" ).autocomplete({--}}
+            {{--    source: function( request, response ) {--}}
+            {{--        $.ajax( {--}}
+            {{--            url: "{{ URL::to('products/JSON-search') }}",--}}
+            {{--            type: "post",--}}
+            {{--            data: {--}}
+            {{--                keywords: request.term--}}
+            {{--            },--}}
+            {{--            success: function( data ) {--}}
+            {{--                console.log(data);--}}
+            {{--                response( data );--}}
+            {{--            }--}}
+            {{--        } );--}}
+            {{--    },--}}
+            {{--    minLength: 4,--}}
+            {{--    autoFocus:true,--}}
+            {{--    focus: function( event, ui ) {--}}
+            {{--        $('#selected_product_id').val(ui.item.id);--}}
+            {{--        $('#selected_product_price').val(ui.item.sell_price);--}}
+            {{--        $('#selected_product_name').val(ui.item.value);--}}
+
+            {{--        var newProductId = $('#selected_product_id').val();--}}
+            {{--        console.log($(this));--}}
+            {{--        var newProductName = $('#selected_product_name').val();--}}
+            {{--        var price = parseFloat($('#selected_product_price').val());--}}
+            {{--        var quantity = parseInt($('#selected_product_quantity').val());--}}
+            {{--        newProduct(newProductId,newProductName,price,quantity);--}}
+            {{--        $('#selected_product_quantity').val(1)--}}
+            {{--        $(this).val('');--}}
+            {{--        $('.ui-widget-content').hide();--}}
+            {{--        return false;--}}
+            {{--    }--}}
+
+            {{--} );--}}
+
+
+
+
+            $('#products').keypress(function(event) {
+                if(event.which==13)
+                {
+                    var code=parseFloat($(this).val().substr(0, 6));
+                    var quan=parseFloat($(this).val().substr(7, 12))/10000;
                     $.ajax( {
                         url: "{{ URL::to('products/JSON-search') }}",
                         type: "post",
                         data: {
-                            keywords: request.term
+                            keywords: code
                         },
                         success: function( data ) {
-                            console.log(data);
-                            response( data );
+                            if(data.id) {
+                                $('#selected_product_id').val(data.id);
+                                $('#selected_product_price').val(data.sell_price);
+                                $('#selected_product_name').val(data.value);
+                                $('#selected_product_quantity').val(quan.toFixed(3));
+
+                                var newProductId = $('#selected_product_id').val();
+                                var newProductName = $('#selected_product_name').val();
+                                var price = parseFloat($('#selected_product_price').val());
+                                var quantity = parseFloat($('#selected_product_quantity').val());
+                                newProduct(newProductId, newProductName, price, quantity);
+                                $('#selected_product_quantity').val(1)
+                                $('#products').val('');
+                            }
+                            else {
+                                alert('هذا المنتج غير موجود !');
+                                $('#products').val('');
+                            }
                         }
                     } );
-                },
-                minLength: 4,
-                autoFocus:true,
-                focus: function( event, ui ) {
-                    $('#selected_product_id').val(ui.item.id);
-                    $('#selected_product_price').val(ui.item.sell_price);
-                    $('#selected_product_name').val(ui.item.value);
-
-                    var newProductId = $('#selected_product_id').val();
-                    console.log($(this));
-                    var newProductName = $('#selected_product_name').val();
-                    var price = parseFloat($('#selected_product_price').val());
-                    var quantity = parseInt($('#selected_product_quantity').val());
-                    newProduct(newProductId,newProductName,price,quantity);
-                    $('#selected_product_quantity').val(1)
-                    $(this).val('');
-                    $('.ui-widget-content').hide();
-                    return false;
                 }
-
-            } );
-            $('#products').keypress(function(event) {
-                event.preventDefault();
-                return false;
+              // return false;
             });
+
             function checkProduct(productId){
                 var newProductId = $('#selected_product_id').val();
                 return productId == newProductId;
@@ -522,7 +600,7 @@
 
                 $('.product').each(function (i) {
                     var product_id =$(this).data('id');
-                    var quantity = parseInt($('.quantity[data-id="'+product_id+'"').val());
+                    var quantity = parseFloat($('.quantity[data-id="'+product_id+'"').val());
                     var price    = parseFloat($('.price[data-id="'+product_id+'"').val());
                     var total    = (quantity*price).toFixed(2);
                     $('.total_'+product_id).text(total);
@@ -549,7 +627,7 @@
                 {
                     var productIndex = productsList.findIndex(checkProduct);
                     if(productIndex != -1){
-                        $('.quantity[data-id="'+newProductId+'"').val(parseInt($('.quantity[data-id="'+newProductId+'"').val())+quantity);
+                        $('.quantity[data-id="'+newProductId+'"').val(parseFloat($('.quantity[data-id="'+newProductId+'"').val())+quantity);
                         reCalculate();
                     }else{
                         productsList.push(newProductId);
@@ -558,7 +636,7 @@
                             '<input type="hidden" value="'+newProductId+'" class="ProductID" name="productID[]"><label class="ProductName" data-id="'+newProductId+'" data-name="'+newProductName+'">'+newProductName+'</label>' +
                             '</div>' +
                             '<div class="col-sm-2">' +
-                            '<input type="number" data-id="'+newProductId+'"  name="productQuantity[]" class="form-control input-sm text-center quantity " value="'+quantity+'" min="1">\n' +
+                            '<input type="number" data-id="'+newProductId+'"  name="productQuantity[]" class="form-control input-sm text-center quantity " value="'+quantity+'" step="0.001">\n' +
                             '</div>' +
                             '<div class="col-sm-2"><input name="productPrice[]" type="text" data-id="'+newProductId+'" value="'+price+'" class="form-control text-center input-sm price " > </div>' +
                             '<div class="col-sm-2"><span class="total total_'+newProductId+'">'+product_total+' </span>' +
@@ -573,7 +651,7 @@
                 var newProductId = $('#selected_product_id').val();
                 var newProductName = $('#products').val();
                 var price = parseFloat($('#selected_product_price').val());
-                var quantity = parseInt($('#selected_product_quantity').val());
+                var quantity = parseFloat($('#selected_product_quantity').val());
                 newProduct(newProductId,newProductName,price,quantity);
                 $('#selected_product_quantity').val(1)
             });
@@ -594,9 +672,42 @@
                     console.log(data.address);
                     $('#sale_address').val(data.address);
                     $('#sale_phone').val(data.phone);
+                    $('#final_receipt_customer_name').html(data.name);
                 }
             } );
         }
+
+        $('#confirm_sale').submit(function (){
+           var f_receipt_paid = $('#f_receipt_paid').val();
+           var f_receipt_total =  $('#f_receipt_total').val();
+           if(f_receipt_paid!=f_receipt_total)
+           {
+              return confirm('المبلغ المدفوع غير مساوي للمبلغ الاجمالي، هل تريد التأكيد؟');
+           }
+        });
+
+        $('#newCustomerForm').submit(function (){
+                var formdata = $(this).serialize();
+            $.ajax( {
+                url: "{{ URL::to('persons/customers/newajax') }}",
+                type: "post",
+                data: formdata,
+                success: function( data ) {
+                    console.log(data);
+                    $('#sale_address').val(data.address);
+                    $('#sale_phone').val(data.phone);
+                    $('#CustomerID').append('<option value='+data.id+'  selected >'+data.name+'</option>');
+                    $('#CustomerID').select2();
+                    $('#addNewCustomer').modal('toggle');
+
+                }
+            } );
+            return false;
+        });
+
+
+
+
     </script>
 
 

@@ -72,5 +72,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="oqms_live" />
+    <orderEntry type="module" module-name="b2b" />
   </component>
 </module>
