@@ -287,7 +287,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
-                            <button type="button" class="btn btn-primary">تأكيد</button>
+{{--                            <button type="button" class="btn btn-primary">تأكيد</button>--}}
                             <button type="submit" class="btn btn-primary">تأكيد + طباعة</button>
                         </div>
                     </form>
@@ -557,8 +557,8 @@
             $('#products').keypress(function(event) {
                 if(event.which==13)
                 {
-                    var code=parseFloat($(this).val().substr(0, 6));
-                    var quan=parseFloat($(this).val().substr(7, 12))/10000;
+                    var code=parseFloat($(this).val().substr(2, 5));
+                    var quan=parseFloat($(this).val().substr(7, 5))/1000;
                     $.ajax( {
                         url: "{{ URL::to('products/JSON-search') }}",
                         type: "post",
@@ -627,7 +627,7 @@
                 {
                     var productIndex = productsList.findIndex(checkProduct);
                     if(productIndex != -1){
-                        $('.quantity[data-id="'+newProductId+'"').val(parseFloat($('.quantity[data-id="'+newProductId+'"').val())+quantity);
+                        $('.quantity[data-id="'+newProductId+'"').val((parseFloat($('.quantity[data-id="'+newProductId+'"').val())+quantity).toFixed(3));
                         reCalculate();
                     }else{
                         productsList.push(newProductId);

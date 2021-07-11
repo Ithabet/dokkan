@@ -83,7 +83,7 @@
                                 <a href="{{ url('/expenses/edit/'.$expense->id) }}" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="{{ url('/expenses/delete/'.$expense->id) }}" onclick="confirm('Are You Sure?')" class="btn btn-danger btn-xs">
+                                <a href="{{ url('/expenses/delete/'.$expense->id) }}" onclick="return confirm('هل انت متأكد من عملية الحذف ؟')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash-o"></i>
                                 </a>
 

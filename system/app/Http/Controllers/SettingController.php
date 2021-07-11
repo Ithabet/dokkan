@@ -38,6 +38,7 @@ class SettingController extends Controller
             'co_name.required'     => 'يجب اضافة اسم الشركة ',
             'co_phone.required'     => 'يجب اضافة هاتف الشركه',
             'co_address.required'     => 'يجب اضافة عنوان الشركة',
+            'logo.required'     => 'برجاء رفع شعار الشركة  ',
             'logo.mimes'     => 'نوع الملف المرفوع غير متطابق ',
         ];
 

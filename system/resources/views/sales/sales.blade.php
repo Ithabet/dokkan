@@ -63,7 +63,7 @@
                                     </a>
                                     @endif
                                     @if(in_array('deleteSale',$roles))
-                                    <a href="{{url('sales/delete/'.$sale->id)}}" class="btn btn-danger btn-xs">
+                                    <a href="{{url('sales/delete/'.$sale->id)}}" onclick="return confirm('هل انت متأكد من عملية الحذف ؟')" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
                                     </a>
                                     @endif
