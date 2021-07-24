@@ -42,6 +42,16 @@
                 <td>{{ $sale->customer->name }}</td>
 
             </tr>
+            @if($sale->order_type == 2)
+                <tr>
+                    <td>رقم الهاتف</td>
+                    <td>{{ $sale->phone }} </td>
+                </tr>
+                <tr>
+                    <td>العنوان</td>
+                    <td>{{ $sale->address }} </td>
+                </tr>
+            @endif
             <tr>
                 <td>رقم الطلب</td>
                 <td>{{ $sale->id }} </td>

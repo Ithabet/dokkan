@@ -40,7 +40,7 @@
                 <span class="login100-form-title p-b-34 p-t-27">
 						تسجيل الدخول
 					</span>
-                <div class="wrap-input100 validate-input" data-validate="أدخل اسم الدخول">
+                <div class="wrap-input100" data-validate="أدخل اسم الدخول">
                     <input class="input100" type="text" name="email" placeholder="اسم الدخول">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     @if ($errors->has('email'))

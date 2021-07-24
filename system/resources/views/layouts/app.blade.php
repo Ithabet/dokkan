@@ -71,10 +71,6 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="{{ URL::to('profile') }}">
-                                    <i class="icon-user"></i> حسابي </a>
-                            </li>
-                            <li>
                                 <a href="{{ URL::to('settings') }}">
                                     <i class="icon-settings"></i> إعدادات
                                 </a>

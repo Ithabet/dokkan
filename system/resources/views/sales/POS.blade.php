@@ -66,7 +66,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         المنتج / باركود
-                                        <input type="text" dir="rtl" class="form-control" id="products">
+                                        <input type="text" dir="rtl" autofocus class="form-control" id="products">
                                         <input type="hidden" id="selected_product_id" value="">
                                         <input type="hidden" id="selected_product_price" value="">
                                         <input type="hidden" id="selected_product_name" value="">
